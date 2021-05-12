@@ -21,3 +21,24 @@ export const ChartContainer = styled.View`
   margin-top: ${hp('2%')}px;
   padding: 12px;
 `;
+
+export const BookSlotContainer = styled.TouchableOpacity`
+  background-color: ${props => props.theme.colors.ui.primary};
+  padding: ${props => props.theme.space[2]};
+  border-radius: 10px;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0px 2px 1px rgba(0, 0, 0, 0.25);
+`;
+
+export const ColorBoxContainer = styled.View`
+  flex-direction: row;
+  align-items: center;
+`;
+
+export const ColorBox = styled.View`
+  width: ${wp('3%')}px;
+  height: ${wp('3%')}px;
+  background-color: ${props => props.color};
+  margin-left: ${wp('1%')}px;
+`;
