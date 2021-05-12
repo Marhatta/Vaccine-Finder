@@ -33,9 +33,9 @@ export const Header = ({
             rightContent
           ) : (
             <Icon
-              source={require('../../../assets/icons/notifyBlack.png')}
-              width={`${hp('4%')}px`}
-              height={`${hp('4%')}px`}
+              source={require('../../../assets/icons/cog.png')}
+              width={`${hp('3%')}px`}
+              height={`${hp('3%')}px`}
             />
           )}
         </Right>

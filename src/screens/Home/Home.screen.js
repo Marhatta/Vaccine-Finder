@@ -1,12 +1,12 @@
 import React from 'react';
-import {View} from 'react-native';
 import {Text} from '../../components/common/Typography/Text.component';
+import {Layout} from '../../components/core/Layout/Layout.component';
 
-const Home = () => {
+const Home = ({navigation}) => {
   return (
-    <View>
+    <Layout navigation={navigation} title="CovidInfo">
       <Text>Welcome</Text>
-    </View>
+    </Layout>
   );
 };
 
