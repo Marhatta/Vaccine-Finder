@@ -1,8 +1,8 @@
 import React from 'react';
 import {
-  PinpoinxButton,
-  PinpoinxBorderedButton,
-  PinpoinxIconButton,
+  CustomButton,
+  CustomBorderedButton,
+  CustomIconButton,
   ButtonText,
   Row,
 } from './Button.styles';
@@ -12,24 +12,24 @@ import {Spacer} from '../Spacer/Spacer.component';
 // These buttons can take all the props of a native-base button
 export const Button = ({title, textTransform, color, ...props}) => {
   return (
-    <PinpoinxButton color={color} {...props} title={title}>
+    <CustomButton color={color} {...props} title={title}>
       <ButtonText
         color="#FFFFFF"
         variant="caption"
         textTransform={textTransform}>
         {title}
       </ButtonText>
-    </PinpoinxButton>
+    </CustomButton>
   );
 };
 
 export const BorderedButton = ({title, textTransform, color, ...props}) => {
   return (
-    <PinpoinxBorderedButton color={color} bordered {...props}>
+    <CustomBorderedButton color={color} bordered {...props}>
       <ButtonText color={color} variant="caption" textTransform={textTransform}>
         {title}
       </ButtonText>
-    </PinpoinxBorderedButton>
+    </CustomBorderedButton>
   );
 };
 
@@ -42,7 +42,7 @@ export const IconButton = ({
   ...props
 }) => {
   return (
-    <PinpoinxIconButton transparent color={color} {...props}>
+    <CustomIconButton transparent color={color} {...props}>
       <Row>
         <Icon source={leftIconSource} />
         <Spacer position="left" size="medium">
@@ -55,6 +55,6 @@ export const IconButton = ({
         </Spacer>
       </Row>
       <Icon source={rightIconSource} />
-    </PinpoinxIconButton>
+    </CustomIconButton>
   );
 };

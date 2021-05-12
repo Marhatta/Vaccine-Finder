@@ -3,6 +3,7 @@ import styled from 'styled-components/native';
 const defaultTextStyles = theme => `
   font-family: ${theme.fonts.regular};
   color: ${theme.colors.text.primary};
+  font-size: ${theme.fontSizes.body};
   flex-wrap: wrap;
   margin-top: 0px;
   margin-bottom: 0px;

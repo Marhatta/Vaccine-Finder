@@ -8,7 +8,7 @@ import {Provider} from 'react-redux';
 import {store} from './src/redux/store';
 import {name as appName} from './app.json';
 
-const Pinpoinx = () => {
+const Custom = () => {
   return (
     <Provider store={store}>
       <App />
@@ -16,4 +16,4 @@ const Pinpoinx = () => {
   );
 };
 
-AppRegistry.registerComponent(appName, () => Pinpoinx);
+AppRegistry.registerComponent(appName, () => Custom);

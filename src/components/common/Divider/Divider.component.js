@@ -1,4 +1,4 @@
 import React from 'react';
-import {PinpoinxDivider} from './Divider.styles';
+import {CustomDivider} from './Divider.styles';
 
-export const Divider = () => <PinpoinxDivider />;
+export const Divider = () => <CustomDivider />;

@@ -4,7 +4,7 @@ import {Layout} from '../../components/core/Layout/Layout.component';
 
 const Home = ({navigation}) => {
   return (
-    <Layout navigation={navigation} title="CovidInfo">
+    <Layout navigation={navigation}>
       <Text>Welcome</Text>
     </Layout>
   );

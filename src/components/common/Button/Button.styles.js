@@ -2,20 +2,20 @@ import styled from 'styled-components/native';
 import {Button} from 'native-base';
 import {Text} from '../Typography/Text.component';
 
-export const PinpoinxButton = styled(Button)`
+export const CustomButton = styled(Button)`
   background-color: ${props =>
     props.color ? props.color : props.theme.colors.ui.primary};
   border-radius: 6px;
 `;
 
-export const PinpoinxBorderedButton = styled(Button)`
+export const CustomBorderedButton = styled(Button)`
   border-width: 2px;
   border-color: ${props =>
     props.color ? props.color : props.theme.colors.ui.primary};
   border-radius: 6px;
 `;
 
-export const PinpoinxIconButton = styled(Button)`
+export const CustomIconButton = styled(Button)`
   border-width: 1px;
   border-color: ${props =>
     props.color ? props.color : props.theme.colors.ui.primary};

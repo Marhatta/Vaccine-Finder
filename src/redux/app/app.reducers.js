@@ -1,7 +1,7 @@
 import {SET_THEME} from './app.types';
 
 const initialState = {
-  theme: 'light',
+  theme: 'dark',
 };
 
 const appReducer = (state = initialState, action) => {

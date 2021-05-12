@@ -4,7 +4,7 @@ import {Platform, UIManager} from 'react-native';
 import {connect} from 'react-redux';
 import {ThemeProvider} from 'styled-components/native';
 import {createStructuredSelector} from 'reselect';
-import {PinpoinxStatusBar} from './src/components/core/StatusBar/StatusBar.component';
+import {CustomStatusBar} from './src/components/core/StatusBar/StatusBar.component';
 import {Navigation} from './src/infrastructure/navigation';
 import {selectTheme} from './src/redux/app/app.selectors';
 import {lightTheme} from './src/infrastructure/theme/light';
@@ -33,7 +33,7 @@ const getTheme = themeName => {
 function App({themeName}) {
   return (
     <ThemeProvider theme={getTheme(themeName)}>
-      <PinpoinxStatusBar />
+      <CustomStatusBar />
       <Navigation />
     </ThemeProvider>
   );

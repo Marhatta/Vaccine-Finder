@@ -1,7 +1,7 @@
 import React from 'react';
-import {heightPercentageToDP as hp} from 'react-native-responsive-screen';
-import {Divider} from '../../common/Divider/Divider.component';
-import {Icon} from '../../common/Icon/Icon.component';
+import {View} from 'react-native';
+import {useTheme} from 'styled-components/native';
+import {NativeBaseIcon} from '../../common/Icon/Icon.component';
 import {Text} from '../../common/Typography/Text.component';
 import {Container, Left, Right} from './Header.styles';
 
@@ -12,35 +12,22 @@ export const Header = ({
   centerContent,
   rightContent,
 }) => {
+  const theme = useTheme();
   return (
-    <>
-      <Container>
-        <Left>
-          {leftContent ? (
-            leftContent
-          ) : (
-            <Icon
-              source={require('../../../assets/icons/menuBlack.png')}
-              width={`${hp('4%')}px`}
-              height={`${hp('4%')}px`}
-              onPress={() => navigation.openDrawer()}
-            />
-          )}
-        </Left>
-        {centerContent ? centerContent : <Text variant="label">{title}</Text>}
-        <Right>
-          {rightContent ? (
-            rightContent
-          ) : (
-            <Icon
-              source={require('../../../assets/icons/cog.png')}
-              width={`${hp('3%')}px`}
-              height={`${hp('3%')}px`}
-            />
-          )}
-        </Right>
-      </Container>
-      <Divider />
-    </>
+    <Container>
+      <Left>{leftContent ? leftContent : <View />}</Left>
+      {centerContent ? centerContent : <Text variant="label">{title}</Text>}
+      <Right>
+        {rightContent ? (
+          rightContent
+        ) : (
+          <NativeBaseIcon
+            name="setting"
+            type="AntDesign"
+            color={theme.colors.text.secondary}
+          />
+        )}
+      </Right>
+    </Container>
   );
 };

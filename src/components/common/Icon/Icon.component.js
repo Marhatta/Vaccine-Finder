@@ -1,10 +1,14 @@
 import React from 'react';
-import {PinpoinxIcon, PinpoinxTouchable} from './Icon.styles';
+import {CustomIcon, CustomTouchable, CustomNativeBaseIcon} from './Icon.styles';
 
-export const Icon = ({width, height, source, ...props}) => {
+export const Icon = ({width, height, source, color, ...props}) => {
   return (
-    <PinpoinxTouchable activeOpacity={0.7} {...props}>
-      <PinpoinxIcon width={width} height={height} source={source} />
-    </PinpoinxTouchable>
+    <CustomTouchable activeOpacity={0.7} {...props}>
+      <CustomIcon width={width} height={height} source={source} />
+    </CustomTouchable>
   );
+};
+
+export const NativeBaseIcon = ({...props}) => {
+  return <CustomNativeBaseIcon {...props} />;
 };
