@@ -3,9 +3,15 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "android": "react-native run-android",
-    "ios": "react-native run-ios",
+    "_android":"react-native run-android",
+    "android": "npm run env:dev && npm run _android",
+    "android:prod": "npm run env:prod && npm run _android",
+    "_ios": "react-native run-ios",
+    "ios": "npm run env:dev && npm run _ios",
+    "ios:prod": "npm run env:prod && npm run _ios",
     "start": "react-native start",
+    "env:dev": "cd src && node scripts/set-environment.js development",
+    "env:prod": "cd src && node scripts/set-environment.js production",
     "test": "jest",
     "lint": "eslint ."
   },
