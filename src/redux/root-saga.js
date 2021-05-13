@@ -1,6 +1,6 @@
 import {all, call} from 'redux-saga/effects';
-//import {appSagas} from './app/app.sagas';
+import {commonSagas} from './common/common.sagas';
 
 export default function* rootSaga() {
-  // yield all([call(appSagas)]);
+  yield all([call(commonSagas)]);
 }

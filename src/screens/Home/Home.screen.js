@@ -1,4 +1,7 @@
-import React from 'react';
+import React, {useEffect} from 'react';
+import {Image} from 'react-native';
+import {connect} from 'react-redux';
+import {createStructuredSelector} from 'reselect';
 import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp,
@@ -15,10 +18,17 @@ import {
   BookSlotContainer,
   ColorBox,
   ColorBoxContainer,
+  TweetUpdatesContainer,
+  TweetContainer,
 } from './Home.styles';
 import {strings} from '../../infrastructure/lang';
+import {getTweets} from '../../redux/common/common.actions';
+import {selectTweets} from '../../redux/common/common.selectors';
 
-const Home = ({navigation}) => {
+const Home = ({navigation, getTweets, tweets}) => {
+  useEffect(() => {
+    getTweets();
+  }, [getTweets]);
   const theme = useTheme();
   const confirmed = [10, 20, 40, 55, 85, 91, 105, 200, 300, 400, 450, 490, 500];
   const deaths = [
@@ -57,7 +67,7 @@ const Home = ({navigation}) => {
             </ColorBoxContainer>
           </StatsCardColumn>
           <StatsCardColumn>
-            <Text variant="caption">247000</Text>
+            <Text variant="caption">24700 0</Text>
             <ColorBoxContainer>
               <Text
                 fontSize={`${hp('1.5%')}px`}
@@ -88,9 +98,39 @@ const Home = ({navigation}) => {
           <Text fontSize={`${hp('1.8%')}px`}>{strings.vaccinesWork}</Text>
           <Text>{strings.bookYourSlotsNow}</Text>
         </BookSlotContainer>
+
+        <TweetUpdatesContainer horizontal>
+          {tweets?.map(tweet => (
+            <TweetContainer key={tweet.id}>
+              {tweet?.retweeted_status?.entities?.media && (
+                <Image
+                  resizeMode="contain"
+                  source={{
+                    uri: tweet?.retweeted_status?.entities?.media[0]
+                      ?.media_url_https,
+                  }}
+                  style={{
+                    width: wp('65%'),
+                    height: hp('22%'),
+                    borderRadius: 10,
+                  }}
+                />
+              )}
+              <Text>
+                {tweet?.retweeted_status
+                  ? tweet.retweeted_status.text
+                  : tweet.text}
+              </Text>
+            </TweetContainer>
+          ))}
+        </TweetUpdatesContainer>
       </Container>
     </Layout>
   );
 };
 
-export default Home;
+const mapStateToProps = createStructuredSelector({
+  tweets: selectTweets,
+});
+
+export default connect(mapStateToProps, {getTweets})(Home);
