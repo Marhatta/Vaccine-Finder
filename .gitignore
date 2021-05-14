@@ -1,3 +1,6 @@
+/src/env.json
+/src/envs/*
+
 # OSX
 #
 .DS_Store
@@ -34,6 +37,7 @@ local.properties
 node_modules/
 npm-debug.log
 yarn-error.log
+src/env/
 
 # BUCK
 buck-out/

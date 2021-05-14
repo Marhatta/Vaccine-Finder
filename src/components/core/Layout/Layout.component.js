@@ -5,6 +5,7 @@ import {Container} from './Layout.styles';
 export const Layout = ({
   navigation,
   title,
+  showHeader,
   headerLeftContent,
   headerCenterContent,
   headerRightContent,
@@ -12,13 +13,15 @@ export const Layout = ({
 }) => {
   return (
     <Container>
-      <Header
-        title={title}
-        navigation={navigation}
-        leftContent={headerLeftContent}
-        centerContent={headerCenterContent}
-        rightContent={headerRightContent}
-      />
+      {showHeader && (
+        <Header
+          title={title}
+          navigation={navigation}
+          leftContent={headerLeftContent}
+          centerContent={headerCenterContent}
+          rightContent={headerRightContent}
+        />
+      )}
       {children}
     </Container>
   );

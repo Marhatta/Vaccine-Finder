@@ -121,7 +121,7 @@ const TabNavigator = () => {
               />
             ),
         }}
-        name="Vaccine"
+        name="Vaccination"
         component={Home}
       />
     </Tab.Navigator>
