@@ -8,6 +8,7 @@ import {
 } from '../../components/common/Icon/Icon.component';
 import {Spacer} from '../../components/common/Spacer/Spacer.component';
 import Home from '../../screens/Home/Home.screen';
+import TweetsScreen from '../../screens/Tweets/Tweets.screen';
 
 const Tab = createBottomTabNavigator();
 
@@ -96,17 +97,17 @@ const TabNavigator = () => {
         options={{
           tabBarIcon: ({focused}) =>
             focused ? (
-              <NativeBaseIcon name="newspaper-o" type="FontAwesome" />
+              <NativeBaseIcon name="twitter" type="AntDesign" />
             ) : (
               <NativeBaseIcon
-                name="newspaper-o"
-                type="FontAwesome"
+                name="twitter"
+                type="AntDesign"
                 color={theme.colors.text.secondary}
               />
             ),
         }}
-        name="News"
-        component={Home}
+        name="Tweets"
+        component={TweetsScreen}
       />
       <Tab.Screen
         options={{
@@ -121,7 +122,7 @@ const TabNavigator = () => {
               />
             ),
         }}
-        name="Vaccination"
+        name="Vaccine"
         component={Home}
       />
     </Tab.Navigator>
