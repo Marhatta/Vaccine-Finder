@@ -6,9 +6,10 @@ import {getTweetsSuccess, getTweetsError} from './common.actions';
 
 //==================GET: Tweets ===========================//
 export function* getTweetsAsync({payload: data}) {
+  console.log('==next== ', data);
   try {
     let tweets = yield getData(
-      'https://api.twitter.com/2/tweets/search/recent?query=covid19india&tweet.fields=author_id,created_at,entities,geo,in_reply_to_user_id,lang,possibly_sensitive,referenced_tweets,source',
+      'https://api.twitter.com/2/tweets/search/recent?query=covid19 india vaccine has:media -is:retweet is:verified lang:en&expansions=author_id,attachments.media_keys&media.fields=media_key,type,url&tweet.fields=entities&user.fields=profile_image_url&max_results=30',
       {
         Authorization: `Bearer ${TWITTER_BEARER_TOKEN}`,
       },

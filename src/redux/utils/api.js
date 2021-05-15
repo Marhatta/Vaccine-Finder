@@ -9,6 +9,12 @@ export const getData = (url, headers) => {
     url,
   };
   return axios(options)
-    .then(response => response.data)
+    .then(response => {
+      if (url.includes('https://api.twitter.com/2/tweets/search/recent')) {
+        return response;
+      } else {
+        return response.data;
+      }
+    })
     .catch(error => {});
 };
