@@ -1,13 +1,13 @@
 import React, {useEffect} from 'react';
-import {Image} from 'react-native';
 import {connect} from 'react-redux';
 import {createStructuredSelector} from 'reselect';
+import {useTheme} from 'styled-components/native';
 import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp,
 } from 'react-native-responsive-screen';
-import {useTheme} from 'styled-components/native';
 import {Text} from '../../components/common/Typography/Text.component';
+import {Icon} from '../../components/common/Icon/Icon.component';
 import {Layout} from '../../components/core/Layout/Layout.component';
 import {LineChart} from '../../components/common/Chart/Chart.component';
 import {
@@ -18,8 +18,7 @@ import {
   BookSlotContainer,
   ColorBox,
   ColorBoxContainer,
-  TweetUpdatesContainer,
-  TweetContainer,
+  CardCustomeColumn,
 } from './Home.styles';
 import {strings} from '../../infrastructure/lang';
 import {getTweets} from '../../redux/common/common.actions';
@@ -94,36 +93,107 @@ const Home = ({navigation, getTweets, tweets}) => {
           <LineChart data={data} />
         </ChartContainer>
 
+        <StatsCard>
+          <CardCustomeColumn width="15%">
+            <Icon
+              width={`${hp('8%')}px`}
+              height={`${hp('8%')}px`}
+              source={require('../../assets/icons/hospital.png')}
+            />
+          </CardCustomeColumn>
+          <CardCustomeColumn width="40%">
+            <Text
+              fontSize={`${hp('2%')}px`}
+              color={theme.colors.text.secondary}>
+              Sites Conducting Vaccination
+            </Text>
+            <Text variant="caption">48,166</Text>
+          </CardCustomeColumn>
+          <CardCustomeColumn width="35%">
+            <Text
+              fontSize={`${hp('1.5%')}px`}
+              color={theme.colors.text.secondary}>
+              Goverment
+            </Text>
+            <Text variant="caption">45,11,9112</Text>
+            <Text
+              fontSize={`${hp('1.5%')}px`}
+              color={theme.colors.text.secondary}>
+              Private
+            </Text>
+            <Text variant="caption">2,255</Text>
+          </CardCustomeColumn>
+        </StatsCard>
+
+        <StatsCard>
+          <CardCustomeColumn width="15%">
+            <Icon
+              width={`${hp('8%')}px`}
+              height={`${hp('8%')}px`}
+              source={require('../../assets/icons/group.png')}
+            />
+          </CardCustomeColumn>
+          <CardCustomeColumn width="40%">
+            <Text
+              fontSize={`${hp('2%')}px`}
+              color={theme.colors.text.secondary}>
+              Total Registration
+            </Text>
+            <Text variant="caption">20,96,96,365</Text>
+          </CardCustomeColumn>
+          <CardCustomeColumn width="35%">
+            <Text
+              fontSize={`${hp('1.5%')}px`}
+              color={theme.colors.text.secondary}>
+              Age 18-44
+            </Text>
+            <Text variant="caption">7,32,70,243</Text>
+            <Text
+              fontSize={`${hp('1.5%')}px`}
+              color={theme.colors.text.secondary}>
+              Age 45+
+            </Text>
+            <Text variant="caption">13,22,64,26,122</Text>
+          </CardCustomeColumn>
+        </StatsCard>
+
+        <StatsCard>
+          <CardCustomeColumn width="15%">
+            <Icon
+              width={`${hp('8%')}px`}
+              height={`${hp('8%')}px`}
+              source={require('../../assets/icons/syringe.png')}
+              color={theme.colors.ui.primary}
+            />
+          </CardCustomeColumn>
+          <CardCustomeColumn width="40%">
+            <Text
+              fontSize={`${hp('2%')}px`}
+              color={theme.colors.text.secondary}>
+              Total Vaccination Doses
+            </Text>
+            <Text variant="caption">17,96,52,123</Text>
+          </CardCustomeColumn>
+          <CardCustomeColumn width="35%">
+            <Text
+              fontSize={`${hp('1.5%')}px`}
+              color={theme.colors.text.secondary}>
+              Age 18-44
+            </Text>
+            <Text variant="caption">7,32,70,243</Text>
+            <Text
+              fontSize={`${hp('1.5%')}px`}
+              color={theme.colors.text.secondary}>
+              Age 45+
+            </Text>
+            <Text variant="caption">13,64,26,122</Text>
+          </CardCustomeColumn>
+        </StatsCard>
+
         <BookSlotContainer activeOpacity={0.7}>
           <Text fontSize={`${hp('1.8%')}px`}>{strings.vaccinesWork}</Text>
           <Text>{strings.bookYourSlotsNow}</Text>
         </BookSlotContainer>
-
-        <TweetUpdatesContainer horizontal>
-          {tweets?.map(tweet => (
-            <TweetContainer key={tweet.id}>
-              {tweet?.retweeted_status?.entities?.media && (
-                <Image
-                  resizeMode="contain"
-                  source={{
-                    uri: tweet?.retweeted_status?.entities?.media[0]
-                      ?.media_url_https,
-                  }}
-                  style={{
-                    width: wp('65%'),
-                    height: hp('22%'),
-                    borderRadius: 10,
-                  }}
-                />
-              )}
-              <Text>
-                {tweet?.retweeted_status
-                  ? tweet.retweeted_status.text
-                  : tweet.text}
-              </Text>
-            </TweetContainer>
-          ))}
-        </TweetUpdatesContainer>
       </Container>
     </Layout>
   );

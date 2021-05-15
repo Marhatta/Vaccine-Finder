@@ -26,9 +26,9 @@ const FloatingButton = () => {
     <StyledFloatingButton>
       <Spacer position="left">
         <Icon
-          width={`${hp('10%')}px`}
-          height={`${hp('10%')}px`}
-          source={require('../../assets/icons/floating.png')}
+          width={`${hp('8%')}px`}
+          height={`${hp('8%')}px`}
+          source={require('../../assets/icons/inject.png')}
         />
       </Spacer>
     </StyledFloatingButton>

@@ -13,6 +13,7 @@ export const StatsCard = styled.View`
   width: ${wp('90%')}px;
   flex-direction: row;
   justify-content: space-between;
+  margin-bottom: ${hp('2%')}px;
 `;
 
 export const StatsCardColumn = styled.View``;
@@ -53,4 +54,9 @@ export const TweetContainer = styled.View`
   background-color: ${props => props.theme.colors.bg.secondary};
   box-shadow: 0px 2px 1px rgba(0, 0, 0, 0.25);
   border-radius: 10px;
+`;
+
+export const CardCustomeColumn = styled.View`
+  text-align: left;
+  width: ${props => props.width};
 `;
