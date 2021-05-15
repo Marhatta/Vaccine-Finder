@@ -8,7 +8,7 @@ import {getTweetsSuccess, getTweetsError} from './common.actions';
 export function* getTweetsAsync({payload: data}) {
   try {
     let tweets = yield getData(
-      'https://api.twitter.com/1.1/search/tweets.json?q=(covid19 india #covid19) or (india #sos covid19) filter:media covaxin covisheild max_tweets=1&tweet_mode=extended',
+      'https://api.twitter.com/2/tweets/search/recent?query=covid19india&tweet.fields=author_id,created_at,entities,geo,in_reply_to_user_id,lang,possibly_sensitive,referenced_tweets,source',
       {
         Authorization: `Bearer ${TWITTER_BEARER_TOKEN}`,
       },

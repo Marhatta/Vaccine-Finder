@@ -1,11 +1,6 @@
-import React, {useEffect} from 'react';
-import {connect} from 'react-redux';
-import {createStructuredSelector} from 'reselect';
+import React from 'react';
+import {heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import {useTheme} from 'styled-components/native';
-import {
-  heightPercentageToDP as hp,
-  widthPercentageToDP as wp,
-} from 'react-native-responsive-screen';
 import {Text} from '../../components/common/Typography/Text.component';
 import {Icon} from '../../components/common/Icon/Icon.component';
 import {Layout} from '../../components/core/Layout/Layout.component';
@@ -21,13 +16,8 @@ import {
   CardCustomeColumn,
 } from './Home.styles';
 import {strings} from '../../infrastructure/lang';
-import {getTweets} from '../../redux/common/common.actions';
-import {selectTweets} from '../../redux/common/common.selectors';
 
-const Home = ({navigation, getTweets, tweets}) => {
-  useEffect(() => {
-    getTweets();
-  }, [getTweets]);
+const Home = ({navigation}) => {
   const theme = useTheme();
   const confirmed = [10, 20, 40, 55, 85, 91, 105, 200, 300, 400, 450, 490, 500];
   const deaths = [
@@ -199,8 +189,4 @@ const Home = ({navigation, getTweets, tweets}) => {
   );
 };
 
-const mapStateToProps = createStructuredSelector({
-  tweets: selectTweets,
-});
-
-export default connect(mapStateToProps, {getTweets})(Home);
+export default Home;
