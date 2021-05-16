@@ -9,6 +9,7 @@ import {
   ProfileContainer,
   ProfilePicture,
 } from './Tweets.styles';
+import {TweetSkeleton} from '../../components/common/Skeleton/Skeleton.component';
 import {Layout} from '../../components/core/Layout/Layout.component';
 import {Text} from '../../components/common/Typography/Text.component';
 import {selectTweets} from '../../redux/common/common.selectors';
@@ -20,16 +21,18 @@ const Tweets = ({navigation, getTweets, tweets}) => {
   }, []);
 
   const theme = useTheme();
-
+  console.log(tweets);
   return (
     <Layout>
-      {tweets?.data?.data && (
+      {tweets.loading ? (
+        <TweetSkeleton />
+      ) : (
         <FlatList
-          data={tweets.data.data}
+          data={tweets.tweetList?.data?.data}
           keyExtractor={item => item.id}
           renderItem={({item, index}) => {
-            const userProfile = tweets.data.includes.users[index];
-            const tweetMedia = tweets.data.includes.media[index];
+            const userProfile = tweets.tweetList.data.includes.users[index];
+            const tweetMedia = tweets.tweetList.data.includes.media[index];
             return (
               <TweetContainer key={item.id}>
                 {userProfile && (
