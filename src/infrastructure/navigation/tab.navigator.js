@@ -8,6 +8,7 @@ import {
 } from '../../components/common/Icon/Icon.component';
 import {Spacer} from '../../components/common/Spacer/Spacer.component';
 import Home from '../../screens/Home/Home.screen';
+import Stats from '../../screens/Stats/Stats.screen';
 import TweetsScreen from '../../screens/Tweets/Tweets.screen';
 
 const Tab = createBottomTabNavigator();
@@ -83,7 +84,7 @@ const TabNavigator = () => {
             ),
         }}
         name="Stats"
-        component={Home}
+        component={Stats}
       />
       <Tab.Screen
         name="Add"
