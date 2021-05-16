@@ -4,7 +4,7 @@ const initialState = {
   loadingTweets: false,
   loadingTweetsSuccess: false,
   loadingTweetsError: false,
-  tweets: [],
+  tweets: null,
   tweetsError: null,
 };
 

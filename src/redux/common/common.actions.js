@@ -17,6 +17,6 @@ export const getTweetsSuccess = tweets => {
 export const getTweetsError = error => {
   return {
     type: GET_TWEETS_ERROR,
-    payload: error,
+    payload: error.message,
   };
 };

@@ -10,9 +10,10 @@ export const Layout = ({
   headerCenterContent,
   headerRightContent,
   children,
+  ...props
 }) => {
   return (
-    <Container>
+    <Container {...props}>
       {showHeader && (
         <Header
           title={title}
