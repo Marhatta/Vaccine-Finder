@@ -1,5 +1,8 @@
 import React from 'react';
-import {heightPercentageToDP as hp} from 'react-native-responsive-screen';
+import {
+  heightPercentageToDP as hp,
+  widthPercentageToDP as wp,
+} from 'react-native-responsive-screen';
 import {useTheme} from 'styled-components/native';
 import {Text} from '../../components/common/Typography/Text.component';
 import {Icon} from '../../components/common/Icon/Icon.component';
@@ -7,6 +10,7 @@ import {Layout} from '../../components/core/Layout/Layout.component';
 import {PureChart} from '../../components/common/Chart/Chart.component';
 import {PickerNew} from '../../components/common/Picker/Picker.component';
 import {StatsCard, Container, CardCustomeColumn} from './Stats.styles';
+import {LineChart} from 'react-native-chart-kit';
 
 const Stats = ({navigation}) => {
   const theme = useTheme();
@@ -69,6 +73,109 @@ const Stats = ({navigation}) => {
         </StatsCard>
         <PureChart data={lineChartData} type="line" />
         <PureChart data={pieChartData} type="pie" />
+
+        <LineChart
+          data={{
+            labels: [
+              'Jan',
+              'Feb',
+              'Mar',
+              'Apr',
+              'May',
+              'Jun',
+              'Jul',
+              'Aug',
+              'Sept',
+              'Oct',
+              'Nov',
+              'Dec',
+            ],
+            datasets: [
+              {
+                data: [
+                  Math.random() * 100,
+                  Math.random() * 100,
+                  Math.random() * 100,
+                  Math.random() * 100,
+                  Math.random() * 100,
+                  Math.random() * 100,
+                  Math.random() * 100,
+                  Math.random() * 100,
+                  Math.random() * 100,
+                  Math.random() * 100,
+                  Math.random() * 100,
+                  Math.random() * 100,
+                  Math.random() * 100,
+                  Math.random() * 100,
+                  Math.random() * 100,
+                  Math.random() * 100,
+                  Math.random() * 100,
+                  Math.random() * 100,
+                  Math.random() * 100,
+                  Math.random() * 100,
+                  Math.random() * 100,
+                  Math.random() * 100,
+                  Math.random() * 100,
+                  Math.random() * 100,
+                  Math.random() * 100,
+                  Math.random() * 100,
+                  Math.random() * 100,
+                  Math.random() * 100,
+                  Math.random() * 100,
+                  Math.random() * 100,
+                  Math.random() * 100,
+                  Math.random() * 100,
+                  Math.random() * 100,
+                  Math.random() * 100,
+                  Math.random() * 100,
+                  Math.random() * 100,
+                  Math.random() * 100,
+                  Math.random() * 100,
+                  Math.random() * 100,
+                  Math.random() * 100,
+                  Math.random() * 100,
+                  Math.random() * 100,
+                  Math.random() * 100,
+                  Math.random() * 100,
+                  Math.random() * 100,
+                  Math.random() * 100,
+                  Math.random() * 100,
+                  Math.random() * 100,
+                ],
+              },
+            ],
+          }}
+          width={wp('100%')} // from react-native
+          height={220}
+          yAxisLabel="$"
+          yAxisSuffix="k"
+          yAxisInterval={1} // optional, defaults to 1
+          withInnerLines={false}
+          onDataPointClick={({value, dataset, getColor}) => {
+            console.log(value, dataset, getColor);
+          }}
+          chartConfig={{
+            backgroundColor: '#e26a00',
+            backgroundGradientFrom: theme.colors.bg.primary,
+            backgroundGradientTo: theme.colors.bg.secondary,
+            decimalPlaces: 1, // optional, defaults to 2dp
+            color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
+            labelColor: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
+            style: {
+              borderRadius: 16,
+            },
+            propsForDots: {
+              r: '2',
+              strokeWidth: '2',
+              stroke: '#ffa726',
+            },
+          }}
+          bezier
+          style={{
+            marginVertical: 8,
+            borderRadius: 16,
+          }}
+        />
       </Container>
     </Layout>
   );

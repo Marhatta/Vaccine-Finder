@@ -26,6 +26,7 @@
     "native-base": "^2.15.2",
     "react": "17.0.1",
     "react-native": "0.64.1",
+    "react-native-chart-kit": "^6.11.0",
     "react-native-gesture-handler": "^1.10.3",
     "react-native-pure-chart": "0.0.24",
     "react-native-reanimated": "^2.1.0",
