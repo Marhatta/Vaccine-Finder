@@ -1,4 +1,6 @@
-import React from 'react';
+import React, {useEffect} from 'react';
+import {connect} from 'react-redux';
+import {createStructuredSelector} from 'reselect';
 import {heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import {useTheme} from 'styled-components/native';
 import {Text} from '../../components/common/Typography/Text.component';
@@ -10,14 +12,18 @@ import {
   Container,
   StatsCardColumn,
   ChartContainer,
-  BookSlotContainer,
   ColorBox,
   ColorBoxContainer,
   CardCustomeColumn,
 } from './Home.styles';
 import {strings} from '../../infrastructure/lang';
+import {getCowinPublicReport} from '../../redux/stats/stats.actions';
+import {selectCowinReport} from '../../redux/stats/stats.selectors';
 
-const Home = ({navigation}) => {
+const Home = ({navigation, cowinReport, getCowinPublicReport}) => {
+  useEffect(() => {
+    getCowinPublicReport();
+  }, []);
   const theme = useTheme();
   return (
     <Layout navigation={navigation}>
@@ -96,110 +102,114 @@ const Home = ({navigation}) => {
           />
         </ChartContainer>
 
-        <StatsCard>
-          <CardCustomeColumn width="15%">
-            <Icon
-              width={`${hp('8%')}px`}
-              height={`${hp('8%')}px`}
-              source={require('../../assets/icons/hospital.png')}
-            />
-          </CardCustomeColumn>
-          <CardCustomeColumn width="40%">
-            <Text
-              fontSize={`${hp('2%')}px`}
-              color={theme.colors.text.secondary}>
-              Sites Conducting Vaccination
-            </Text>
-            <Text variant="caption">48,166</Text>
-          </CardCustomeColumn>
-          <CardCustomeColumn width="35%">
-            <Text
-              fontSize={`${hp('1.5%')}px`}
-              color={theme.colors.text.secondary}>
-              Goverment
-            </Text>
-            <Text variant="caption">45,11,9112</Text>
-            <Text
-              fontSize={`${hp('1.5%')}px`}
-              color={theme.colors.text.secondary}>
-              Private
-            </Text>
-            <Text variant="caption">2,255</Text>
-          </CardCustomeColumn>
-        </StatsCard>
+        {cowinReport.loading ? (
+          <Text>loading....</Text>
+        ) : (
+          <>
+            <StatsCard>
+              <CardCustomeColumn width="15%">
+                <Icon
+                  width={`${hp('8%')}px`}
+                  height={`${hp('8%')}px`}
+                  source={require('../../assets/icons/hospital.png')}
+                />
+              </CardCustomeColumn>
+              <CardCustomeColumn width="40%">
+                <Text
+                  fontSize={`${hp('2%')}px`}
+                  color={theme.colors.text.secondary}>
+                  Sites Conducting Vaccination
+                </Text>
+                <Text variant="caption">48,166</Text>
+              </CardCustomeColumn>
+              <CardCustomeColumn width="35%">
+                <Text
+                  fontSize={`${hp('1.5%')}px`}
+                  color={theme.colors.text.secondary}>
+                  Goverment
+                </Text>
+                <Text variant="caption">45,11,9112</Text>
+                <Text
+                  fontSize={`${hp('1.5%')}px`}
+                  color={theme.colors.text.secondary}>
+                  Private
+                </Text>
+                <Text variant="caption">2,255</Text>
+              </CardCustomeColumn>
+            </StatsCard>
 
-        <StatsCard>
-          <CardCustomeColumn width="15%">
-            <Icon
-              width={`${hp('8%')}px`}
-              height={`${hp('8%')}px`}
-              source={require('../../assets/icons/group.png')}
-            />
-          </CardCustomeColumn>
-          <CardCustomeColumn width="40%">
-            <Text
-              fontSize={`${hp('2%')}px`}
-              color={theme.colors.text.secondary}>
-              Total Registration
-            </Text>
-            <Text variant="caption">20,96,96,365</Text>
-          </CardCustomeColumn>
-          <CardCustomeColumn width="35%">
-            <Text
-              fontSize={`${hp('1.5%')}px`}
-              color={theme.colors.text.secondary}>
-              Age 18-44
-            </Text>
-            <Text variant="caption">7,32,70,243</Text>
-            <Text
-              fontSize={`${hp('1.5%')}px`}
-              color={theme.colors.text.secondary}>
-              Age 45+
-            </Text>
-            <Text variant="caption">13,22,64,26,122</Text>
-          </CardCustomeColumn>
-        </StatsCard>
+            <StatsCard>
+              <CardCustomeColumn width="15%">
+                <Icon
+                  width={`${hp('8%')}px`}
+                  height={`${hp('8%')}px`}
+                  source={require('../../assets/icons/group.png')}
+                />
+              </CardCustomeColumn>
+              <CardCustomeColumn width="40%">
+                <Text
+                  fontSize={`${hp('2%')}px`}
+                  color={theme.colors.text.secondary}>
+                  Total Registration
+                </Text>
+                <Text variant="caption">20,96,96,365</Text>
+              </CardCustomeColumn>
+              <CardCustomeColumn width="35%">
+                <Text
+                  fontSize={`${hp('1.5%')}px`}
+                  color={theme.colors.text.secondary}>
+                  Age 18-44
+                </Text>
+                <Text variant="caption">7,32,70,243</Text>
+                <Text
+                  fontSize={`${hp('1.5%')}px`}
+                  color={theme.colors.text.secondary}>
+                  Age 45+
+                </Text>
+                <Text variant="caption">13,22,64,26,122</Text>
+              </CardCustomeColumn>
+            </StatsCard>
 
-        <StatsCard>
-          <CardCustomeColumn width="15%">
-            <Icon
-              width={`${hp('8%')}px`}
-              height={`${hp('8%')}px`}
-              source={require('../../assets/icons/syringe.png')}
-              color={theme.colors.ui.primary}
-            />
-          </CardCustomeColumn>
-          <CardCustomeColumn width="40%">
-            <Text
-              fontSize={`${hp('2%')}px`}
-              color={theme.colors.text.secondary}>
-              Total Vaccination Doses
-            </Text>
-            <Text variant="caption">17,96,52,123</Text>
-          </CardCustomeColumn>
-          <CardCustomeColumn width="35%">
-            <Text
-              fontSize={`${hp('1.5%')}px`}
-              color={theme.colors.text.secondary}>
-              Age 18-44
-            </Text>
-            <Text variant="caption">7,32,70,243</Text>
-            <Text
-              fontSize={`${hp('1.5%')}px`}
-              color={theme.colors.text.secondary}>
-              Age 45+
-            </Text>
-            <Text variant="caption">13,64,26,122</Text>
-          </CardCustomeColumn>
-        </StatsCard>
-
-        <BookSlotContainer activeOpacity={0.7}>
-          <Text fontSize={`${hp('1.8%')}px`}>{strings.vaccinesWork}</Text>
-          <Text>{strings.bookYourSlotsNow}</Text>
-        </BookSlotContainer>
+            <StatsCard>
+              <CardCustomeColumn width="15%">
+                <Icon
+                  width={`${hp('8%')}px`}
+                  height={`${hp('8%')}px`}
+                  source={require('../../assets/icons/syringe.png')}
+                  color={theme.colors.ui.primary}
+                />
+              </CardCustomeColumn>
+              <CardCustomeColumn width="40%">
+                <Text
+                  fontSize={`${hp('2%')}px`}
+                  color={theme.colors.text.secondary}>
+                  Total Vaccination Doses
+                </Text>
+                <Text variant="caption">17,96,52,123</Text>
+              </CardCustomeColumn>
+              <CardCustomeColumn width="35%">
+                <Text
+                  fontSize={`${hp('1.5%')}px`}
+                  color={theme.colors.text.secondary}>
+                  Age 18-44
+                </Text>
+                <Text variant="caption">7,32,70,243</Text>
+                <Text
+                  fontSize={`${hp('1.5%')}px`}
+                  color={theme.colors.text.secondary}>
+                  Age 45+
+                </Text>
+                <Text variant="caption">13,64,26,122</Text>
+              </CardCustomeColumn>
+            </StatsCard>
+          </>
+        )}
       </Container>
     </Layout>
   );
 };
+const mapStateToProps = createStructuredSelector({
+  cowinReport: selectCowinReport,
+});
 
-export default Home;
+export default connect(mapStateToProps, {getCowinPublicReport})(Home);
