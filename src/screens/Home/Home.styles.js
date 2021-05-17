@@ -19,7 +19,7 @@ export const StatsCardColumn = styled.View``;
 
 export const ChartContainer = styled.View`
   margin-top: ${hp('2%')}px;
-  padding: 12px;
+  margin-bottom: ${hp('3%')}px;
 `;
 
 export const BookSlotContainer = styled.TouchableOpacity`

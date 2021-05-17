@@ -1,6 +1,18 @@
 import styled from 'styled-components/native';
-import {LineChart} from 'react-native-svg-charts';
+import {
+  LineChart,
+  PieChart,
+  ProgressChart,
+  BarChart,
+  StackedBarChart,
+} from 'react-native-chart-kit';
 
-export const CustomLineChart = styled(LineChart)`
-  height: ${props => (props.height ? props.height : 200)}px;
-`;
+export const CustomLineChart = styled(LineChart)``;
+
+export const CustomPieChart = styled(PieChart)``;
+
+export const CustomProgressChart = styled(ProgressChart)``;
+
+export const CustomBarChart = styled(BarChart)``;
+
+export const CustomStackedBarChart = styled(StackedBarChart)``;

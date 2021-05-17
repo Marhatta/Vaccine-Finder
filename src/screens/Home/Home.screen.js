@@ -19,27 +19,6 @@ import {strings} from '../../infrastructure/lang';
 
 const Home = ({navigation}) => {
   const theme = useTheme();
-  const confirmed = [10, 20, 40, 55, 85, 91, 105, 200, 300, 400, 450, 490, 500];
-  const deaths = [
-    10, 90, 100, 155, 170, 180, 190, 300, 340, 400, 450, 490, 600,
-  ];
-  const recovered = [
-    40, 90, 200, 255, 385, 399, 456, 500, 530, 540, 560, 588, 600,
-  ];
-
-  const data = [
-    {
-      data: confirmed,
-    },
-    {
-      data: deaths,
-      svg: {stroke: '#fada5e'},
-    },
-    {
-      data: recovered,
-      svg: {stroke: theme.colors.ui.primary},
-    },
-  ];
   return (
     <Layout navigation={navigation}>
       <Container>
@@ -80,7 +59,41 @@ const Home = ({navigation}) => {
         </StatsCard>
 
         <ChartContainer>
-          <LineChart data={data} />
+          <LineChart
+            data={{
+              labels: [
+                'Jan',
+                'Feb',
+                'Mar',
+                'Apr',
+                'May',
+                'Jun',
+                'Jul',
+                'Aug',
+                'Sept',
+                'Oct',
+                'Nov',
+                'Dec',
+              ],
+              datasets: [
+                {
+                  data: [1, 7, 6, 4, 2, 5],
+                  strokeWidth: 2,
+                  color: (opacity = 1) => `rgba(134, 65, 244,${opacity})`, // optional
+                },
+                {
+                  data: [2, 4, 6, 8, 8, 2],
+                  strokeWidth: 2,
+                  color: (opacity = 1) => `rgba(255,255,0, ${opacity})`, // optional
+                },
+                {
+                  data: [9, 4, 7, 8, 2, 4],
+                  strokeWidth: 2,
+                  color: (opacity = 1) => `rgba(0,255,0, ${opacity})`, // optional
+                },
+              ],
+            }}
+          />
         </ChartContainer>
 
         <StatsCard>
