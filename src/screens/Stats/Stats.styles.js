@@ -15,7 +15,7 @@ export const StatsCard = styled.View`
   margin-bottom: ${hp('2%')}px;
 `;
 
-export const CardCustomeColumn = styled.View`
+export const CardCustomColumn = styled.View`
   text-align: left;
   width: ${props => props.width};
 `;
@@ -23,5 +23,4 @@ export const CardCustomeColumn = styled.View`
 export const ChartContainer = styled.View`
   margin-top: ${hp('2%')}px;
   margin-bottom: ${hp('2%')}px;
-  padding: -20px;
 `;

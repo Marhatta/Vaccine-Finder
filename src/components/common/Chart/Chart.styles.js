@@ -6,8 +6,11 @@ import {
   BarChart,
   StackedBarChart,
 } from 'react-native-chart-kit';
+import {widthPercentageToDP as wp} from 'react-native-responsive-screen';
 
-export const CustomLineChart = styled(LineChart)``;
+export const CustomLineChart = styled(LineChart)`
+  margin-left: -${wp('8%')}px;
+`;
 
 export const CustomPieChart = styled(PieChart)``;
 

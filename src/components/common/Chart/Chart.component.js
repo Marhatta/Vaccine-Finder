@@ -21,9 +21,6 @@ export const LineChart = ({data, height, verticalLabelRotation, ...props}) => {
     decimalPlaces: 1, // optional, defaults to 2dp
     color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
     labelColor: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
-    style: {
-      borderRadius: 16,
-    },
     propsForDots: {
       r: '2',
       strokeWidth: '2',
@@ -51,54 +48,29 @@ export const LineChart = ({data, height, verticalLabelRotation, ...props}) => {
 };
 
 export const PieChart = ({data, height, ...props}) => {
-  const theme = useTheme();
   let chartConfig = {
-    backgroundGradientFrom: theme.colors.bg.primary,
-    backgroundGradientTo: theme.colors.bg.secondary,
-    decimalPlaces: 1, // optional, defaults to 2dp
     color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
     labelColor: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
-    style: {
-      borderRadius: 16,
-    },
-    propsForDots: {
-      r: '2',
-      strokeWidth: '2',
-      stroke: '#ffa726',
-    },
   };
 
   return (
     <CustomPieChart
       data={data}
-      width={wp('92%')}
+      width={wp('100%')}
       height={height ? height : 250}
       chartConfig={chartConfig}
       accessor={'population'}
       backgroundColor={'transparent'}
-      paddingLeft={'15'}
-      absolute
+      paddingLeft={wp('3%')}
       {...props}
     />
   );
 };
 
 export const ProgressChart = ({data, height, ...props}) => {
-  const theme = useTheme();
   let chartConfig = {
-    backgroundGradientFrom: theme.colors.bg.primary,
-    backgroundGradientTo: theme.colors.bg.secondary,
-    decimalPlaces: 1, // optional, defaults to 2dp
     color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
     labelColor: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
-    style: {
-      borderRadius: 16,
-    },
-    propsForDots: {
-      r: '2',
-      strokeWidth: '2',
-      stroke: '#ffa726',
-    },
   };
 
   return (
@@ -107,29 +79,17 @@ export const ProgressChart = ({data, height, ...props}) => {
       width={wp('100%')}
       height={height ? height : 250}
       chartConfig={chartConfig}
-      strokeWidth={16}
-      radius={32}
+      strokeWidth={12}
+      radius={20}
       {...props}
     />
   );
 };
 
 export const BarChart = ({data, height, ...props}) => {
-  const theme = useTheme();
   let chartConfig = {
-    backgroundGradientFrom: theme.colors.bg.primary,
-    backgroundGradientTo: theme.colors.bg.secondary,
-    decimalPlaces: 1, // optional, defaults to 2dp
     color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
     labelColor: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
-    style: {
-      borderRadius: 16,
-    },
-    propsForDots: {
-      r: '2',
-      strokeWidth: '2',
-      stroke: '#ffa726',
-    },
   };
 
   return (
@@ -148,19 +108,8 @@ export const BarChart = ({data, height, ...props}) => {
 export const StackedBarChart = ({data, height, ...props}) => {
   const theme = useTheme();
   let chartConfig = {
-    backgroundGradientFrom: theme.colors.bg.primary,
-    backgroundGradientTo: theme.colors.bg.secondary,
-    decimalPlaces: 1, // optional, defaults to 2dp
     color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
     labelColor: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
-    style: {
-      borderRadius: 16,
-    },
-    propsForDots: {
-      r: '2',
-      strokeWidth: '2',
-      stroke: '#ffa726',
-    },
   };
 
   return (
@@ -169,7 +118,6 @@ export const StackedBarChart = ({data, height, ...props}) => {
       width={wp('100%')}
       height={height ? height : 250}
       chartConfig={chartConfig}
-      paddingLeft={'15'}
       {...props}
     />
   );

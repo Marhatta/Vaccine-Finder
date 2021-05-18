@@ -34,7 +34,12 @@ export const ColorBox = styled.View`
   margin-left: ${wp('1%')}px;
 `;
 
-export const CardCustomeColumn = styled.View`
+export const CardCustomColumn = styled.View`
   text-align: left;
   width: ${props => props.width};
+`;
+
+export const LastUpdated = styled.View`
+  flex-direction: row;
+  justify-content: center;
 `;

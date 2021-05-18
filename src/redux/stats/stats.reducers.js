@@ -18,13 +18,14 @@ const statsReducer = (state = initialState, action) => {
       return {
         ...state,
         loadingCowinReport: true,
+        report: null,
       };
     case GET_COWIN_PUBLIC_REPORT_SUCCESS:
       return {
         ...state,
+        report: action.payload,
         loadingCowinReport: false,
         loadingCowinReportSuccess: true,
-        report: action.payload,
       };
     case GET_COWIN_PUBLIC_REPORT_ERROR:
       return {

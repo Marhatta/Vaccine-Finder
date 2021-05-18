@@ -14,7 +14,8 @@ import {
   ChartContainer,
   ColorBox,
   ColorBoxContainer,
-  CardCustomeColumn,
+  CardCustomColumn,
+  LastUpdated,
 } from './Home.styles';
 import {strings} from '../../infrastructure/lang';
 import {getCowinPublicReport} from '../../redux/stats/stats.actions';
@@ -25,9 +26,10 @@ const Home = ({navigation, cowinReport, getCowinPublicReport}) => {
     getCowinPublicReport();
   }, []);
   const theme = useTheme();
+
   return (
     <Layout navigation={navigation}>
-      <Container>
+      <Container showsVerticalScrollIndicator={false}>
         <StatsCard>
           <StatsCardColumn>
             <Text variant="caption">45078000</Text>
@@ -66,6 +68,7 @@ const Home = ({navigation, cowinReport, getCowinPublicReport}) => {
 
         <ChartContainer>
           <LineChart
+            height={hp('30%')}
             data={{
               labels: [
                 'Jan',
@@ -83,17 +86,17 @@ const Home = ({navigation, cowinReport, getCowinPublicReport}) => {
               ],
               datasets: [
                 {
-                  data: [1, 7, 6, 4, 2, 5],
+                  data: [1, 7, 6, 4, 2, 5, 1, 7, 6, 4, 2, 5],
                   strokeWidth: 2,
                   color: (opacity = 1) => `rgba(134, 65, 244,${opacity})`, // optional
                 },
                 {
-                  data: [2, 4, 6, 8, 8, 2],
+                  data: [2, 4, 6, 8, 8, 2, 2, 4, 6, 8, 8, 2],
                   strokeWidth: 2,
                   color: (opacity = 1) => `rgba(255,255,0, ${opacity})`, // optional
                 },
                 {
-                  data: [9, 4, 7, 8, 2, 4],
+                  data: [9, 4, 7, 8, 2, 4, 9, 4, 7, 8, 2, 4],
                   strokeWidth: 2,
                   color: (opacity = 1) => `rgba(0,255,0, ${opacity})`, // optional
                 },
@@ -107,101 +110,138 @@ const Home = ({navigation, cowinReport, getCowinPublicReport}) => {
         ) : (
           <>
             <StatsCard>
-              <CardCustomeColumn width="15%">
+              <CardCustomColumn width="15%">
                 <Icon
                   width={`${hp('8%')}px`}
                   height={`${hp('8%')}px`}
                   source={require('../../assets/icons/hospital.png')}
                 />
-              </CardCustomeColumn>
-              <CardCustomeColumn width="40%">
+              </CardCustomColumn>
+              <CardCustomColumn width="40%">
                 <Text
                   fontSize={`${hp('2%')}px`}
                   color={theme.colors.text.secondary}>
                   Sites Conducting Vaccination
                 </Text>
-                <Text variant="caption">48,166</Text>
-              </CardCustomeColumn>
-              <CardCustomeColumn width="35%">
+                <Text variant="caption">
+                  {cowinReport.report?.topBlock.sites.total.toLocaleString()}
+                </Text>
+              </CardCustomColumn>
+              <CardCustomColumn width="35%">
                 <Text
                   fontSize={`${hp('1.5%')}px`}
                   color={theme.colors.text.secondary}>
-                  Goverment
+                  Government
                 </Text>
-                <Text variant="caption">45,11,9112</Text>
+                <Text variant="caption">
+                  {' '}
+                  {cowinReport.report?.topBlock.sites.govt.toLocaleString()}
+                </Text>
                 <Text
                   fontSize={`${hp('1.5%')}px`}
                   color={theme.colors.text.secondary}>
                   Private
                 </Text>
-                <Text variant="caption">2,255</Text>
-              </CardCustomeColumn>
+                <Text variant="caption">
+                  {' '}
+                  {cowinReport.report?.topBlock.sites.pvt.toLocaleString()}
+                </Text>
+              </CardCustomColumn>
             </StatsCard>
 
             <StatsCard>
-              <CardCustomeColumn width="15%">
+              <CardCustomColumn width="15%">
                 <Icon
                   width={`${hp('8%')}px`}
                   height={`${hp('8%')}px`}
                   source={require('../../assets/icons/group.png')}
                 />
-              </CardCustomeColumn>
-              <CardCustomeColumn width="40%">
+              </CardCustomColumn>
+              <CardCustomColumn width="40%">
                 <Text
                   fontSize={`${hp('2%')}px`}
                   color={theme.colors.text.secondary}>
                   Total Registration
                 </Text>
-                <Text variant="caption">20,96,96,365</Text>
-              </CardCustomeColumn>
-              <CardCustomeColumn width="35%">
+                <Text variant="caption">
+                  {' '}
+                  {cowinReport.report?.topBlock.registration.total.toLocaleString()}
+                </Text>
+              </CardCustomColumn>
+              <CardCustomColumn width="35%">
                 <Text
                   fontSize={`${hp('1.5%')}px`}
                   color={theme.colors.text.secondary}>
                   Age 18-44
                 </Text>
-                <Text variant="caption">7,32,70,243</Text>
+                <Text variant="caption">
+                  {' '}
+                  {cowinReport.report?.topBlock.registration.cit_18_45.toLocaleString()}
+                </Text>
                 <Text
                   fontSize={`${hp('1.5%')}px`}
                   color={theme.colors.text.secondary}>
                   Age 45+
                 </Text>
-                <Text variant="caption">13,22,64,26,122</Text>
-              </CardCustomeColumn>
+                <Text variant="caption">
+                  {' '}
+                  {cowinReport.report?.topBlock.registration.cit_45_above.toLocaleString()}
+                </Text>
+              </CardCustomColumn>
             </StatsCard>
 
             <StatsCard>
-              <CardCustomeColumn width="15%">
+              <CardCustomColumn width="15%">
                 <Icon
                   width={`${hp('8%')}px`}
                   height={`${hp('8%')}px`}
                   source={require('../../assets/icons/syringe.png')}
                   color={theme.colors.ui.primary}
                 />
-              </CardCustomeColumn>
-              <CardCustomeColumn width="40%">
+              </CardCustomColumn>
+              <CardCustomColumn width="40%">
                 <Text
                   fontSize={`${hp('2%')}px`}
                   color={theme.colors.text.secondary}>
                   Total Vaccination Doses
                 </Text>
-                <Text variant="caption">17,96,52,123</Text>
-              </CardCustomeColumn>
-              <CardCustomeColumn width="35%">
+                <Text variant="caption">
+                  {' '}
+                  {cowinReport.report?.topBlock.vaccination.total.toLocaleString()}
+                </Text>
+              </CardCustomColumn>
+              <CardCustomColumn width="35%">
                 <Text
                   fontSize={`${hp('1.5%')}px`}
                   color={theme.colors.text.secondary}>
-                  Age 18-44
+                  Covishield
                 </Text>
-                <Text variant="caption">7,32,70,243</Text>
+                <Text variant="caption">
+                  {cowinReport.report?.topBlock.vaccination.covishield.toLocaleString()}
+                </Text>
                 <Text
                   fontSize={`${hp('1.5%')}px`}
                   color={theme.colors.text.secondary}>
-                  Age 45+
+                  Covaxin
                 </Text>
-                <Text variant="caption">13,64,26,122</Text>
-              </CardCustomeColumn>
+                <Text variant="caption">
+                  {cowinReport.report?.topBlock.vaccination.covaxin.toLocaleString()}
+                </Text>
+              </CardCustomColumn>
             </StatsCard>
+
+            <LastUpdated>
+              <Text
+                fontSize={`${hp('1.5%')}px`}
+                color={theme.colors.text.secondary}>
+                Last Updated:{' '}
+              </Text>
+              <Text
+                fontSize={`${hp('1.5%')}px`}
+                color={theme.colors.text.secondary}>
+                {new Date(cowinReport.report?.timestamp).toLocaleString()}
+              </Text>
+            </LastUpdated>
           </>
         )}
       </Container>

@@ -11,7 +11,7 @@ export const CustomStatusBar = () => {
       statusBarCurrentHeight={StatusBar.currentHeight}>
       <StatusBar
         translucent
-        backgroundColor={theme.colors.ui.primary}
+        backgroundColor={theme.colors.bg.primary}
         barStyle="light-content"
       />
     </StatusBarContainer>

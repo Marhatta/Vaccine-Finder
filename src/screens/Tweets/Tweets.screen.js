@@ -21,7 +21,6 @@ const Tweets = ({navigation, getTweets, tweets}) => {
   }, []);
 
   const theme = useTheme();
-  console.log(tweets);
   return (
     <Layout>
       {tweets.loading ? (

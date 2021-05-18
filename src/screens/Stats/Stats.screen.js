@@ -17,7 +17,7 @@ import {
 import {
   StatsCard,
   Container,
-  CardCustomeColumn,
+  CardCustomColumn,
   ChartContainer,
 } from './Stats.styles';
 
@@ -25,25 +25,25 @@ const Stats = ({navigation}) => {
   const theme = useTheme();
   return (
     <Layout navigation={navigation}>
-      <Container>
+      <Container showsVerticalScrollIndicator={false}>
         <StatsCard>
-          <CardCustomeColumn width="15%">
+          <CardCustomColumn width="15%">
             <Icon
               width={`${hp('8%')}px`}
               height={`${hp('8%')}px`}
               source={require('../../assets/icons/syringe.png')}
               color={theme.colors.ui.primary}
             />
-          </CardCustomeColumn>
-          <CardCustomeColumn width="40%">
+          </CardCustomColumn>
+          <CardCustomColumn width="40%">
             <Text
               fontSize={`${hp('2%')}px`}
               color={theme.colors.text.secondary}>
               Total Vaccination Doses
             </Text>
             <Text variant="caption">17,96,52,123</Text>
-          </CardCustomeColumn>
-          <CardCustomeColumn width="35%">
+          </CardCustomColumn>
+          <CardCustomColumn width="35%">
             <Text
               fontSize={`${hp('1.5%')}px`}
               color={theme.colors.text.secondary}>
@@ -56,7 +56,7 @@ const Stats = ({navigation}) => {
               Age 45+
             </Text>
             <Text variant="caption">13,64,26,122</Text>
-          </CardCustomeColumn>
+          </CardCustomColumn>
         </StatsCard>
 
         <ChartContainer>
@@ -140,68 +140,74 @@ const Stats = ({navigation}) => {
           <PieChart
             data={[
               {
-                name: 'Above 60',
+                name: ', Above 60',
                 population: 56177096,
-                color: 'rgba(131, 167, 234, 1)',
-                legendFontColor: '#7F7F7F',
-                legendFontSize: 15,
+                color: '#e84545',
+                legendFontColor: theme.colors.text.secondary,
+                legendFontSize: wp('3%'),
+                legendFontFamily: 'Poppins-Regular',
               },
               {
-                name: '18-30',
+                name: ', 18-30',
                 population: 7672198,
-                color: '#F00',
-                legendFontColor: '#7F7F7F',
-                legendFontSize: 15,
+                color: '#b6c9f0',
+                legendFontColor: theme.colors.text.secondary,
+                legendFontSize: wp('3%'),
+                legendFontFamily: 'Poppins-Regular',
               },
               {
-                name: '30-45',
+                name: ', 30-45',
                 population: 13689750,
-                color: 'red',
-                legendFontColor: '#7F7F7F',
-                legendFontSize: 15,
+                color: '#233e8b',
+                legendFontColor: theme.colors.text.secondary,
+                legendFontSize: wp('3%'),
+                legendFontFamily: 'Poppins-Regular',
               },
               {
-                name: '45-60',
+                name: ', 45-60',
                 population: 64201322,
-                color: '#ffffff',
-                legendFontColor: '#7F7F7F',
-                legendFontSize: 15,
+                color: '#94d0cc',
+                legendFontColor: theme.colors.text.secondary,
+                legendFontSize: wp('3%'),
+                legendFontFamily: 'Poppins-Regular',
               },
             ]}
           />
         </ChartContainer>
 
-        <ChartContainer>
-          <Text>Vaccination - Category</Text>
-          <Tabs>
-            <Tab
-              heading={
-                <TabHeading>
-                  <Text>Gender</Text>
-                </TabHeading>
-              }>
-              <ProgressChart
-                data={{
-                  labels: ['Male', 'Female', 'Others'], // optional
-                  data: [0.4, 0.6, 0.8],
-                }}
-              />
-            </Tab>
-            <Tab
-              heading={
-                <TabHeading>
-                  <Text>Vaccine</Text>
-                </TabHeading>
-              }>
-              <ProgressChart
-                data={{
-                  labels: ['Covishield', 'Covaxin'], // optional
-                  data: [0.4, 0.6],
-                }}
-              />
-            </Tab>
-          </Tabs>
-        </ChartContainer>
+        <Text>Vaccination - Category</Text>
+        <Tabs style={{height: hp('35%')}}>
+          <Tab
+            heading={
+              <TabHeading style={{backgroundColor: theme.colors.bg.secondary}}>
+                <Text fontSize={`${hp('2%')}px`}>Gender</Text>
+              </TabHeading>
+            }>
+            <ProgressChart
+              height={hp('30%')}
+              data={{
+                labels: ['Male', 'Female', 'Others'], // optional
+                data: [0.4, 0.6, 0.8],
+                colors: ['#e84545', '#233e8b', '#94d0cc'],
+              }}
+            />
+          </Tab>
+          <Tab
+            heading={
+              <TabHeading style={{backgroundColor: theme.colors.bg.secondary}}>
+                <Text fontSize={`${hp('2%')}px`}>Vaccine</Text>
+              </TabHeading>
+            }>
+            <ProgressChart
+              height={hp('30%')}
+              data={{
+                labels: ['Covishield', 'Covaxin'], // optional
+                data: [0.4, 0.6],
+                colors: ['#233e8b', '#94d0cc'],
+              }}
+            />
+          </Tab>
+        </Tabs>
 
         <ChartContainer>
           <Text>Vaccination Coverage</Text>
@@ -211,7 +217,7 @@ const Stats = ({navigation}) => {
               legend: ['Dose 1', 'Dose 2'],
               data: [
                 [60, 60],
-                [30, 30],
+                [70, 30],
                 [60, 60],
                 [30, 30],
                 [60, 60],
@@ -220,8 +226,9 @@ const Stats = ({navigation}) => {
                 [30, 30],
                 [60, 60],
               ],
-              barColors: ['#7F7F7F', '#F00'],
+              barColors: ['#233e8b', '#94d0cc'],
             }}
+            stacked
           />
         </ChartContainer>
       </Container>
