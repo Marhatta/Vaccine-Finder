@@ -10,6 +10,7 @@ import {Spacer} from '../../components/common/Spacer/Spacer.component';
 import Home from '../../screens/Home/Home.screen';
 import Stats from '../../screens/Stats/Stats.screen';
 import TweetsScreen from '../../screens/Tweets/Tweets.screen';
+import Appointments from '../../screens/Appointments/Appointments.screen';
 
 const Tab = createBottomTabNavigator();
 
@@ -124,7 +125,7 @@ const TabNavigator = () => {
             ),
         }}
         name="Vaccine"
-        component={Home}
+        component={Appointments}
       />
     </Tab.Navigator>
   );
