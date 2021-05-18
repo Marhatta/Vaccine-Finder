@@ -1,7 +1,6 @@
 import React from 'react';
-import {Input} from 'native-base';
-import {} from './Input.styles';
+import {CustomInput} from './Input.styles';
 
-export const CustomInput = ({...props}) => {
-  return <Input {...props} />;
+export const CovidInfoInput = ({...props}) => {
+  return <CustomInput {...props} />;
 };

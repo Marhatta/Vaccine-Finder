@@ -2,6 +2,7 @@ import 'react-native-gesture-handler';
 import React from 'react';
 import {Platform, UIManager} from 'react-native';
 import {connect} from 'react-redux';
+import { Root } from "native-base";
 import {ThemeProvider} from 'styled-components/native';
 import {createStructuredSelector} from 'reselect';
 import {CustomStatusBar} from './src/components/core/StatusBar/StatusBar.component';
@@ -34,7 +35,9 @@ function App({themeName}) {
   return (
     <ThemeProvider theme={getTheme(themeName)}>
       <CustomStatusBar />
-      <Navigation />
+      <Root>
+        <Navigation />
+      </Root>
     </ThemeProvider>
   );
 }

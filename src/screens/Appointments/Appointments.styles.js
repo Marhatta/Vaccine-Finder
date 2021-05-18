@@ -3,7 +3,7 @@ import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp,
 } from 'react-native-responsive-screen';
-import {Tab, Tabs, TabHeading, View} from 'native-base';
+import {Tab, Tabs} from 'native-base';
 
 export const Container = styled.ScrollView`
   flex: 1;
@@ -12,5 +12,7 @@ export const Container = styled.ScrollView`
 export const CustomTabs = styled(Tabs)``;
 
 export const CustomTab = styled(Tab)`
-  height: ${hp('8%')}px;
+  height: ${hp('7%')}px;
+  display: flex;
+  flex-direction: row;
 `;
