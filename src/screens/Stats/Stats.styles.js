@@ -24,3 +24,20 @@ export const ChartContainer = styled.View`
   margin-top: ${hp('2%')}px;
   margin-bottom: ${hp('2%')}px;
 `;
+
+export const VaccinationByCityUTWrapper = styled.ScrollView`
+  margin-top: ${hp('2%')}px;
+`;
+
+export const VaccinationByCityUTContainer = styled.View`
+  flex: 1;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: ${props => props.theme.space[2]};
+`;
+
+export const VaccinationByCityUTContainerStats = styled.View`
+  width: ${wp('34%')}px;
+  flex-direction: row;
+  justify-content: space-between;
+`;

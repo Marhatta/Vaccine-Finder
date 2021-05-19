@@ -19,9 +19,17 @@ import {
 } from './Home.styles';
 import {strings} from '../../infrastructure/lang';
 import {getCowinPublicReport} from '../../redux/stats/stats.actions';
-import {selectCowinReport} from '../../redux/stats/stats.selectors';
+import {
+  selectCovid19IndiaReport,
+  selectCowinReport,
+} from '../../redux/stats/stats.selectors';
 
-const Home = ({navigation, cowinReport, getCowinPublicReport}) => {
+const Home = ({
+  navigation,
+  cowinReport,
+  covid19IndiaReport,
+  getCowinPublicReport,
+}) => {
   useEffect(() => {
     getCowinPublicReport();
   }, []);
@@ -250,6 +258,7 @@ const Home = ({navigation, cowinReport, getCowinPublicReport}) => {
 };
 const mapStateToProps = createStructuredSelector({
   cowinReport: selectCowinReport,
+  covid19IndiaReport: selectCovid19IndiaReport,
 });
 
 export default connect(mapStateToProps, {getCowinPublicReport})(Home);

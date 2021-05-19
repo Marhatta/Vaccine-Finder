@@ -27,6 +27,7 @@ const Tweets = ({navigation, getTweets, tweets}) => {
         <TweetSkeleton />
       ) : (
         <FlatList
+          showsVerticalScrollIndicator={false}
           data={tweets.tweetList?.data?.data}
           keyExtractor={item => item.id}
           renderItem={({item, index}) => {

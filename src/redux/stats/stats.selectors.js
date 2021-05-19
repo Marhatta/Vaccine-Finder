@@ -10,3 +10,12 @@ export const selectCowinReport = createSelector([selectStats], stats => {
     report: stats.report,
   };
 });
+
+export const selectCovid19IndiaReport = createSelector([selectStats], stats => {
+  return {
+    loading: stats.loadingCovid19IndiaReport,
+    loadingSuccess: stats.loadingCovid19IndiaReportSuccess,
+    loadingError: stats.loadingCovid19IndiaReportError,
+    report: stats.covid19IndiaReport,
+  };
+});

@@ -1,7 +1,7 @@
 export const fonts = {
-  regular: 'Roboto-Regular',
-  medium: 'Roboto-Medium',
-  bold: 'Roboto-Bold',
+  regular: 'Poppins-Regular',
+  medium: 'Poppins-Medium',
+  bold: 'Poppins-SemiBold',
 };
 
 export const fontSizes = {

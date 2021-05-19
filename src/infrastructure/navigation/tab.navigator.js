@@ -10,7 +10,7 @@ import {Spacer} from '../../components/common/Spacer/Spacer.component';
 import Home from '../../screens/Home/Home.screen';
 import Stats from '../../screens/Stats/Stats.screen';
 import TweetsScreen from '../../screens/Tweets/Tweets.screen';
-import Appointments from '../../screens/Appointments/Appointments.screen';
+import Settings from '../../screens/Settings/Settings.screen';
 
 const Tab = createBottomTabNavigator();
 
@@ -46,7 +46,7 @@ const TabNavigator = () => {
         activeTintColor: theme.colors.ui.tertiary,
         inactiveTintColor: theme.colors.text.secondary,
         style: {
-          backgroundColor: theme.colors.bg.secondary,
+          backgroundColor: theme.colors.bg.primary,
           borderTopWidth: 0,
         },
         labelStyle: {
@@ -115,17 +115,17 @@ const TabNavigator = () => {
         options={{
           tabBarIcon: ({focused}) =>
             focused ? (
-              <NativeBaseIcon name="medicinebox" type="AntDesign" />
+              <NativeBaseIcon name="setting" type="AntDesign" />
             ) : (
               <NativeBaseIcon
-                name="medicinebox"
+                name="setting"
                 type="AntDesign"
                 color={theme.colors.text.secondary}
               />
             ),
         }}
-        name="Vaccine"
-        component={Appointments}
+        name="Settings"
+        component={Settings}
       />
     </Tab.Navigator>
   );
