@@ -42,4 +42,5 @@ export const CardCustomColumn = styled.View`
 export const LastUpdated = styled.View`
   flex-direction: row;
   justify-content: center;
+  margin-bottom: ${hp('2%')}px;
 `;

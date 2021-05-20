@@ -59,3 +59,28 @@ export const TweetSkeleton = () => {
     </SkeletonPlaceholder>
   );
 };
+
+export const StatLineSkeleton = () => {
+  return (
+    <SkeletonPlaceholder>
+      <SkeletonPlaceholder.Item
+        width={wp('23%')}
+        height={hp('3%')}
+        borderRadius={5}
+      />
+    </SkeletonPlaceholder>
+  );
+};
+
+export const ChartSkeleton = () => {
+  return (
+    <SkeletonPlaceholder>
+      <SkeletonPlaceholder.Item
+        width={wp('90%')}
+        height={hp('35%')}
+        borderRadius={10}
+        marginBottom={hp('3%')}
+      />
+    </SkeletonPlaceholder>
+  );
+};

@@ -8,13 +8,13 @@ import {
 } from './stats.types';
 
 const initialState = {
-  loadingCowinReport: false,
+  loadingCowinReport: true,
   loadingCowinReportSuccess: false,
   loadingCowinReportError: false,
   report: null,
   reportError: null,
 
-  loadingCovid19IndiaReport: false,
+  loadingCovid19IndiaReport: true,
   loadingCovid19IndiaReportSuccess: false,
   loadingCovid19IndiaReportError: false,
   covid19IndiaReport: null,

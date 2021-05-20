@@ -17,5 +17,6 @@ export const selectCovid19IndiaReport = createSelector([selectStats], stats => {
     loadingSuccess: stats.loadingCovid19IndiaReportSuccess,
     loadingError: stats.loadingCovid19IndiaReportError,
     report: stats.covid19IndiaReport,
+    casesTimeSeries: stats.covid19IndiaReport?.cases_time_series,
   };
 });

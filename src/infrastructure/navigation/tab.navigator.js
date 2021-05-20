@@ -1,44 +1,17 @@
 import React from 'react';
-import styled, {useTheme} from 'styled-components/native';
+import {useTheme} from 'styled-components/native';
 import {heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import {
-  NativeBaseIcon,
-  Icon,
-} from '../../components/common/Icon/Icon.component';
-import {Spacer} from '../../components/common/Spacer/Spacer.component';
+import {NativeBaseIcon} from '../../components/common/Icon/Icon.component';
 import Home from '../../screens/Home/Home.screen';
 import Stats from '../../screens/Stats/Stats.screen';
 import TweetsScreen from '../../screens/Tweets/Tweets.screen';
 import Settings from '../../screens/Settings/Settings.screen';
+import Appointments from '../../screens/Appointments/Appointments.screen';
 
 const Tab = createBottomTabNavigator();
 
-const StyledFloatingButton = styled.View`
-  position: absolute;
-  height: ${hp('12%')}px;
-  width: ${hp('12%')}px;
-  background-color: ${props => props.theme.colors.bg.secondary};
-  border-radius: 60px;
-  justify-content: center;
-  align-items: center;
-`;
-
-const FloatingButton = () => {
-  return (
-    <StyledFloatingButton>
-      <Spacer position="left">
-        <Icon
-          width={`${hp('8%')}px`}
-          height={`${hp('8%')}px`}
-          source={require('../../assets/icons/inject.png')}
-        />
-      </Spacer>
-    </StyledFloatingButton>
-  );
-};
-
-const TabNavigator = () => {
+const TabNavigator = ({navigation}) => {
   const theme = useTheme();
   return (
     <Tab.Navigator
@@ -88,11 +61,19 @@ const TabNavigator = () => {
         component={Stats}
       />
       <Tab.Screen
-        name="Add"
-        component={Home}
+        name="Vaccination"
+        component={Appointments}
         options={{
-          tabBarLabel: '',
-          tabBarIcon: () => <FloatingButton />,
+          tabBarIcon: ({focused}) =>
+            focused ? (
+              <NativeBaseIcon name="injection-syringe" type="Fontisto" />
+            ) : (
+              <NativeBaseIcon
+                name="injection-syringe"
+                type="Fontisto"
+                color={theme.colors.text.secondary}
+              />
+            ),
         }}
       />
       <Tab.Screen
