@@ -44,3 +44,8 @@ export const LastUpdated = styled.View`
   justify-content: center;
   margin-bottom: ${hp('2%')}px;
 `;
+export const Legend = styled.View`
+  flex-direction: row;
+  justify-content: center;
+  margin-bottom: ${hp('1%')}px;
+`;

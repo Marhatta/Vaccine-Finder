@@ -20,6 +20,7 @@ import {
   ColorBoxContainer,
   CardCustomColumn,
   LastUpdated,
+  Legend,
 } from './Home.styles';
 import {formatNumber} from '../../utils/numberFormatter';
 import {
@@ -44,7 +45,6 @@ const Home = ({
   }, []);
 
   const theme = useTheme();
-  console.log(covid19IndiaReport.loading);
 
   return (
     <Layout navigation={navigation}>
@@ -72,7 +72,6 @@ const Home = ({
               <StatLineSkeleton />
             ) : (
               <Text variant="caption">
-                {' '}
                 {covid19IndiaReport.report?.statewise[0].deaths.toLocaleString()}
               </Text>
             )}
@@ -109,9 +108,17 @@ const Home = ({
           <ChartSkeleton />
         ) : (
           <ChartContainer>
+            <Legend>
+              <Text
+                fontSize={`${hp('2%')}px`}
+                color={theme.colors.text.secondary}>
+                Last 7 days trends
+              </Text>
+            </Legend>
             <LineChart
               height={hp('35%')}
               yAxisSuffix=""
+              fromZero
               yLabelsOffset={3}
               formatYLabel={yValue => formatNumber(yValue)}
               data={{
@@ -128,8 +135,22 @@ const Home = ({
                     data: covid19IndiaReport.casesTimeSeries
                       .slice(covid19IndiaReport.casesTimeSeries.length - 7)
                       .map(cases => cases.dailyconfirmed),
-                    strokeWidth: 5,
-                    color: (opacity = 1) => `rgba(134, 65, 244,${opacity})`, // optional
+                    strokeWidth: 3,
+                    color: () => 'rgba(134, 65, 244)', // optional
+                  },
+                  {
+                    data: covid19IndiaReport.casesTimeSeries
+                      .slice(covid19IndiaReport.casesTimeSeries.length - 7)
+                      .map(cases => cases.dailydeceased),
+                    strokeWidth: 3,
+                    color: () => '#fada5e', // optional
+                  },
+                  {
+                    data: covid19IndiaReport.casesTimeSeries
+                      .slice(covid19IndiaReport.casesTimeSeries.length - 7)
+                      .map(cases => cases.dailyrecovered),
+                    strokeWidth: 3,
+                    color: () => theme.colors.ui.primary, // optional
                   },
                 ],
               }}
@@ -261,7 +282,7 @@ const Home = ({
             ) : (
               <Text variant="caption">
                 {' '}
-                {cowinReport.report?.topBlock.vaccination.total.toLocaleString()}
+                {cowinReport.report?.topBlock.vaccination.total_doses.toLocaleString()}
               </Text>
             )}
           </CardCustomColumn>
@@ -294,16 +315,24 @@ const Home = ({
         </StatsCard>
 
         <LastUpdated>
-          <Text
-            fontSize={`${hp('1.5%')}px`}
-            color={theme.colors.text.secondary}>
-            Last Updated:{' '}
-          </Text>
-          <Text
-            fontSize={`${hp('1.5%')}px`}
-            color={theme.colors.text.secondary}>
-            {new Date(cowinReport.report?.timestamp).toLocaleString()}
-          </Text>
+          {cowinReport.loading ? (
+            <StatLineSkeleton />
+          ) : (
+            <>
+              <Text
+                fontSize={`${hp('1.5%')}px`}
+                color={theme.colors.text.secondary}>
+                Last Updated:{' '}
+              </Text>
+              <Text
+                fontSize={`${hp('1.5%')}px`}
+                color={theme.colors.text.secondary}>
+                {new Date(
+                  cowinReport.report?.timestamp.split(' ')[0],
+                ).toLocaleString()}
+              </Text>
+            </>
+          )}
         </LastUpdated>
       </Container>
     </Layout>
