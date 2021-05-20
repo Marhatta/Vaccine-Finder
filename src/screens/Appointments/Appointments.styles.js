@@ -62,4 +62,5 @@ export const HospitalNameText = styled(Text)`
 `;
 
 export const AddressText = styled(Text)`
+  margin-top: -5px;
 `;
