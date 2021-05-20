@@ -55,4 +55,11 @@ export const ListItemCard = styled(Card)`
   margin-right: ${wp('2%')}px;
   height: ${wp('20%')}px;
   width: ${wp('55%')}px;
+  padding: ${wp('1%')}px;
+`;
+
+export const HospitalNameText = styled(Text)`
+`;
+
+export const AddressText = styled(Text)`
 `;

@@ -24,6 +24,8 @@ import {
   Listcolumn,
   ListItemDateText,
   ListItemCard,
+  HospitalNameText,
+  AddressText,
 } from './Appointments.styles';
 
 const Appointments = ({navigation}) => {
@@ -180,12 +182,23 @@ const Appointments = ({navigation}) => {
                           inputSessions.map((item, index) => {
                             return (
                               <ListItemCard key={index}>
-                                <Text>{item.name}</Text>
+                                <HospitalNameText
+                                  variant="caption"
+                                  fontSize="12px"
+                                  color={theme.colors.text.secondary}>
+                                  {item.name}
+                                </HospitalNameText>
+                                <AddressText
+                                  variant="label"
+                                  fontSize="10px"
+                                  color={theme.colors.text.secondary}>
+                                  {item.address},{item.district_name},{item.state_name}
+                                </AddressText>
                               </ListItemCard>
                             );
                           })
                         ) : (
-                          <Text>No Data</Text>
+                          <Text>No Data Found, Please try again</Text>
                         )}
                       </ScrollView>
                     </ListRow>
