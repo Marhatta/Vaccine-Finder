@@ -47,9 +47,9 @@ Text.defaultProps = {
 export const ActionSheetText = styled.Text`
   color:${({color, theme}) => (color ? color : theme.colors.text.primary)}
   padding: 10px;
-  border-width: 2px;
+  margin: 5px;
+  border-bottom-width: 2px;
   border-bottom-color: ${props =>
     props.color ? props.color : props.theme.colors.ui.primary};
-  border-radius: 6px;
-  width: ${wp('50%')}px;
+  width: ${wp('43%')}px;
 `;
