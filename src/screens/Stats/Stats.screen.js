@@ -1,4 +1,5 @@
 import React from 'react';
+import {Alert} from 'react-native';
 import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp,
@@ -8,12 +9,13 @@ import {connect} from 'react-redux';
 import {createStructuredSelector} from 'reselect';
 import {useTheme} from 'styled-components/native';
 import {Text} from '../../components/common/Typography/Text.component';
-import {Icon} from '../../components/common/Icon/Icon.component';
+import {NativeBaseIcon} from '../../components/common/Icon/Icon.component';
 import {Layout} from '../../components/core/Layout/Layout.component';
 import {
   LineChart,
   PieChart,
 } from '../../components/common/Chart/Chart.component';
+import StateActionSheetPicker from '../../components/StateActionSheetPicker/StateActionSheetPicker.component';
 import {
   StatsCard,
   Container,
@@ -22,24 +24,32 @@ import {
   VaccinationByCityUTWrapper,
   VaccinationByCityUTContainer,
   VaccinationByCityUTContainerStats,
+  AlertInfo,
+  AlertInfoRow,
 } from './Stats.styles';
-import {selectCowinReport} from '../../redux/stats/stats.selectors';
+import {
+  selectCovid19IndiaReport,
+  selectCowinReport,
+  selectStates,
+} from '../../redux/stats/stats.selectors';
+import {getCowinPublicReport} from '../../redux/stats/stats.actions';
 
-const Stats = ({navigation, cowinReport}) => {
+const Stats = ({navigation, states, cowinReport, covid19IndiaReport}) => {
   const theme = useTheme();
   return (
     <Layout navigation={navigation}>
-      {cowinReport.loading ? (
+      {cowinReport.loading || covid19IndiaReport.loading ? (
         <Spinner />
       ) : (
         <Container showsVerticalScrollIndicator={false}>
+          <StateActionSheetPicker />
           <StatsCard>
             <CardCustomColumn width="15%">
-              <Icon
-                width={`${hp('8%')}px`}
-                height={`${hp('8%')}px`}
-                source={require('../../assets/icons/syringe.png')}
-                color={theme.colors.ui.primary}
+              <NativeBaseIcon
+                style={{fontSize: hp('5%')}}
+                name="injection-syringe"
+                type="Fontisto"
+                color={theme.colors.text.secondary}
               />
             </CardCustomColumn>
             <CardCustomColumn width="40%">
@@ -73,11 +83,26 @@ const Stats = ({navigation, cowinReport}) => {
           </StatsCard>
 
           <ChartContainer>
-            <Text
-              fontSize={`${hp('2%')}px`}
-              color={theme.colors.text.secondary}>
-              AEFI Reported (last 7 days)
-            </Text>
+            <AlertInfoRow>
+              <Text
+                fontSize={`${hp('2%')}px`}
+                color={theme.colors.text.secondary}>
+                AEFI Reported (last 7 days)
+              </Text>
+              <AlertInfo
+                onPress={() => {
+                  Alert.alert('', 'Adverse Event Following Immunization', [
+                    {text: 'OK'},
+                  ]);
+                }}>
+                <NativeBaseIcon
+                  style={{fontSize: hp('2.2%')}}
+                  name="infocirlceo"
+                  type="AntDesign"
+                  color={theme.colors.text.secondary}
+                />
+              </AlertInfo>
+            </AlertInfoRow>
             <Text
               fontSize={`${hp('1.8%')}px`}
               color={theme.colors.text.secondary}>
@@ -152,11 +177,18 @@ const Stats = ({navigation, cowinReport}) => {
           </ChartContainer>
 
           <Text fontSize={`${hp('2%')}px`} color={theme.colors.text.secondary}>
-            Vaccination by State/UT
+            Vaccination by{' '}
+            {states.selectedState.toLowerCase() === 'india'
+              ? 'State/UT'
+              : 'District'}
           </Text>
           <VaccinationByCityUTWrapper>
             <VaccinationByCityUTContainer>
-              <Text variant="label">State/UT</Text>
+              <Text variant="label">
+                {states.selectedState.toLowerCase() === 'india'
+                  ? 'State/UT'
+                  : 'District'}
+              </Text>
               <VaccinationByCityUTContainerStats>
                 <Text variant="label">Today</Text>
                 <Text variant="label">Total</Text>
@@ -194,6 +226,8 @@ const Stats = ({navigation, cowinReport}) => {
 
 const mapStateToProps = createStructuredSelector({
   cowinReport: selectCowinReport,
+  covid19IndiaReport: selectCovid19IndiaReport,
+  states: selectStates,
 });
 
-export default connect(mapStateToProps, null)(Stats);
+export default connect(mapStateToProps, {getCowinPublicReport})(Stats);

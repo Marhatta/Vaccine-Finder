@@ -4,13 +4,14 @@ import {createStructuredSelector} from 'reselect';
 import {heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import {useTheme} from 'styled-components/native';
 import {Text} from '../../components/common/Typography/Text.component';
-import {Icon} from '../../components/common/Icon/Icon.component';
+import {NativeBaseIcon} from '../../components/common/Icon/Icon.component';
 import {Layout} from '../../components/core/Layout/Layout.component';
 import {LineChart} from '../../components/common/Chart/Chart.component';
 import {
   StatLineSkeleton,
   ChartSkeleton,
 } from '../../components/common/Skeleton/Skeleton.component';
+import StateActionSheetPicker from '../../components/StateActionSheetPicker/StateActionSheetPicker.component';
 import {
   StatsCard,
   Container,
@@ -30,6 +31,7 @@ import {
 import {
   selectCovid19IndiaReport,
   selectCowinReport,
+  selectStates,
 } from '../../redux/stats/stats.selectors';
 
 const Home = ({
@@ -38,6 +40,7 @@ const Home = ({
   covid19IndiaReport,
   getCowinPublicReport,
   getCovid19IndiaReport,
+  states,
 }) => {
   useEffect(() => {
     getCowinPublicReport();
@@ -157,12 +160,15 @@ const Home = ({
             />
           </ChartContainer>
         )}
+
+        <StateActionSheetPicker />
         <StatsCard>
           <CardCustomColumn width="15%">
-            <Icon
-              width={`${hp('8%')}px`}
-              height={`${hp('8%')}px`}
-              source={require('../../assets/icons/hospital.png')}
+            <NativeBaseIcon
+              style={{fontSize: hp('5%')}}
+              name="hospital-o"
+              type="FontAwesome"
+              color={theme.colors.text.secondary}
             />
           </CardCustomColumn>
           <CardCustomColumn width="40%">
@@ -209,66 +215,69 @@ const Home = ({
           </CardCustomColumn>
         </StatsCard>
 
-        <StatsCard>
-          <CardCustomColumn width="15%">
-            <Icon
-              width={`${hp('8%')}px`}
-              height={`${hp('8%')}px`}
-              source={require('../../assets/icons/group.png')}
-            />
-          </CardCustomColumn>
-          <CardCustomColumn width="40%">
-            <Text
-              fontSize={`${hp('2%')}px`}
-              color={theme.colors.text.secondary}>
-              Total Registration
-            </Text>
-            {cowinReport.loading ? (
-              <StatLineSkeleton />
-            ) : (
-              <Text variant="caption">
-                {' '}
-                {cowinReport.report?.topBlock.registration.total.toLocaleString()}
+        {states.selectedState.toLowerCase() === 'india' && (
+          <StatsCard>
+            <CardCustomColumn width="15%">
+              <NativeBaseIcon
+                style={{fontSize: hp('5%')}}
+                name="sticky-note-o"
+                type="FontAwesome"
+                color={theme.colors.text.secondary}
+              />
+            </CardCustomColumn>
+            <CardCustomColumn width="40%">
+              <Text
+                fontSize={`${hp('2%')}px`}
+                color={theme.colors.text.secondary}>
+                Total Registration
               </Text>
-            )}
-          </CardCustomColumn>
-          <CardCustomColumn width="35%">
-            <Text
-              fontSize={`${hp('1.5%')}px`}
-              color={theme.colors.text.secondary}>
-              Age 18-44
-            </Text>
-            {cowinReport.loading ? (
-              <StatLineSkeleton />
-            ) : (
-              <Text variant="caption">
-                {' '}
-                {cowinReport.report?.topBlock.registration.cit_18_45.toLocaleString()}
+              {cowinReport.loading ? (
+                <StatLineSkeleton />
+              ) : (
+                <Text variant="caption">
+                  {' '}
+                  {cowinReport.report?.topBlock.registration.total?.toLocaleString()}
+                </Text>
+              )}
+            </CardCustomColumn>
+            <CardCustomColumn width="35%">
+              <Text
+                fontSize={`${hp('1.5%')}px`}
+                color={theme.colors.text.secondary}>
+                Age 18-44
               </Text>
-            )}
-            <Text
-              fontSize={`${hp('1.5%')}px`}
-              color={theme.colors.text.secondary}>
-              Age 45+
-            </Text>
-            {cowinReport.loading ? (
-              <StatLineSkeleton />
-            ) : (
-              <Text variant="caption">
-                {' '}
-                {cowinReport.report?.topBlock.registration.cit_45_above.toLocaleString()}
+              {cowinReport.loading ? (
+                <StatLineSkeleton />
+              ) : (
+                <Text variant="caption">
+                  {' '}
+                  {cowinReport.report?.topBlock.registration.cit_18_45?.toLocaleString()}
+                </Text>
+              )}
+              <Text
+                fontSize={`${hp('1.5%')}px`}
+                color={theme.colors.text.secondary}>
+                Age 45+
               </Text>
-            )}
-          </CardCustomColumn>
-        </StatsCard>
+              {cowinReport.loading ? (
+                <StatLineSkeleton />
+              ) : (
+                <Text variant="caption">
+                  {' '}
+                  {cowinReport.report?.topBlock.registration.cit_45_above?.toLocaleString()}
+                </Text>
+              )}
+            </CardCustomColumn>
+          </StatsCard>
+        )}
 
         <StatsCard>
           <CardCustomColumn width="15%">
-            <Icon
-              width={`${hp('8%')}px`}
-              height={`${hp('8%')}px`}
-              source={require('../../assets/icons/syringe.png')}
-              color={theme.colors.ui.primary}
+            <NativeBaseIcon
+              style={{fontSize: hp('5%')}}
+              name="injection-syringe"
+              type="Fontisto"
+              color={theme.colors.text.secondary}
             />
           </CardCustomColumn>
           <CardCustomColumn width="40%">
@@ -341,6 +350,7 @@ const Home = ({
 const mapStateToProps = createStructuredSelector({
   cowinReport: selectCowinReport,
   covid19IndiaReport: selectCovid19IndiaReport,
+  states: selectStates,
 });
 
 export default connect(mapStateToProps, {

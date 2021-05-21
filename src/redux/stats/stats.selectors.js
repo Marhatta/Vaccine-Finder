@@ -20,3 +20,10 @@ export const selectCovid19IndiaReport = createSelector([selectStats], stats => {
     casesTimeSeries: stats.covid19IndiaReport?.cases_time_series,
   };
 });
+
+export const selectStates = createSelector([selectStats], stats => {
+  return {
+    stateList: stats.states,
+    selectedState: stats.selectedState,
+  };
+});

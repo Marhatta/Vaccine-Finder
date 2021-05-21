@@ -9,10 +9,13 @@ import {
 } from './stats.actions';
 
 //==================GET: Cowin Public Report ===========================//
-export function* getCowinPublicReportAsync() {
+export function* getCowinPublicReportAsync({payload: stateId}) {
+  console.log(stateId);
   try {
     let report = yield getData(
-      'https://api.cowin.gov.in/api/v1/reports/v2/getPublicReports',
+      !stateId
+        ? 'https://api.cowin.gov.in/api/v1/reports/v2/getPublicReports'
+        : `https://api.cowin.gov.in/api/v1/reports/v2/getPublicReports?state_id=${stateId}`,
     );
     if (report) {
       yield put(getCowinPublicReportSuccess(report));

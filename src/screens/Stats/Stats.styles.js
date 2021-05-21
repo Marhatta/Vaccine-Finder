@@ -41,3 +41,14 @@ export const VaccinationByCityUTContainerStats = styled.View`
   flex-direction: row;
   justify-content: space-between;
 `;
+
+export const StatsCardColumn = styled.View``;
+
+export const AlertInfoRow = styled.View`
+  flex-direction: row;
+`;
+
+export const AlertInfo = styled.TouchableOpacity`
+  margin-left: ${wp('1%')}px;
+  margin-top: ${hp('.2%')}px;
+`;

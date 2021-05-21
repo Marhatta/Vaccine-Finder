@@ -36,6 +36,7 @@ export const ColorBox = styled.View`
 
 export const CardCustomColumn = styled.View`
   text-align: left;
+  justify-content: flex-start;
   width: ${props => props.width};
 `;
 

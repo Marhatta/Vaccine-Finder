@@ -5,11 +5,13 @@ import {
   GET_COVID19INDIA_REPORT,
   GET_COVID19INDIA_REPORT_SUCCESS,
   GET_COVID19INDIA_REPORT_ERROR,
+  SET_SELECTED_STATE,
 } from './stats.types';
 
-export const getCowinPublicReport = () => {
+export const getCowinPublicReport = stateId => {
   return {
     type: GET_COWIN_PUBLIC_REPORT,
+    payload: stateId,
   };
 };
 
@@ -44,5 +46,12 @@ export const getCovid19IndiaReportError = error => {
   return {
     type: GET_COVID19INDIA_REPORT_ERROR,
     payload: error.message,
+  };
+};
+
+export const setSelectedState = state => {
+  return {
+    type: SET_SELECTED_STATE,
+    payload: state,
   };
 };
