@@ -159,110 +159,106 @@ const Appointments = ({navigation}) => {
               <Text>Hospitals</Text>
             </Listcolumn>
           </ListRow>
-          <ListRow>
-            {inputSessions.length > 0 ? (
-              inputSessions.map((item, index) => {
-                return (
-                  <ListRow key={index}>
-                    <Listcolumn width="25%">
-                      <ListItemDateText key={index}>
-                        {item.date}
-                      </ListItemDateText>
-                    </Listcolumn>
-                    <Listcolumn width="85%">
-                      <ScrollView
-                        horizontal={true}
-                        showsHorizontalScrollIndicator={false}
-                        scrollEventThrottle={300}
-                        pagingEnabled
-                        decelerationRate="fast">
-                        {item.sessions.length > 0 ? (
-                          item.sessions.map((session, index) => {
-                            return (
-                              <ListItemCard key={session.id}>
-                                <ListRow>
-                                  {session.fee_type === 'Paid' ? (
-                                    <Icon
-                                      width={`${wp('5%')}px`}
-                                      height={`${hp('2.5%')}px`}
-                                      source={require('../../assets/icons/paid.png')}
-                                    />
-                                  ) : (
-                                    <Icon
-                                      width={`${wp('5%')}px`}
-                                      height={`${hp('2.5%')}px`}
-                                      source={require('../../assets/icons/free.png')}
-                                    />
-                                  )}
+          {inputSessions.length > 0 ? (
+            inputSessions.map((item, index) => {
+              return (
+                <ListRow key={index}>
+                  <Listcolumn width="25%">
+                    <ListItemDateText key={index}>{item.date}</ListItemDateText>
+                  </Listcolumn>
+                  <Listcolumn width="85%">
+                    <ScrollView
+                      horizontal={true}
+                      showsHorizontalScrollIndicator={false}
+                      scrollEventThrottle={300}
+                      pagingEnabled
+                      decelerationRate="fast">
+                      {item.sessions.length > 0 ? (
+                        item.sessions.map((session, index) => {
+                          return (
+                            <ListItemCard key={session.id}>
+                              <ListRow>
+                                {session.fee_type === 'Paid' ? (
+                                  <Icon
+                                    width={`${wp('5%')}px`}
+                                    height={`${hp('2.5%')}px`}
+                                    source={require('../../assets/icons/paid.png')}
+                                  />
+                                ) : (
+                                  <Icon
+                                    width={`${wp('5%')}px`}
+                                    height={`${hp('2.5%')}px`}
+                                    source={require('../../assets/icons/free.png')}
+                                  />
+                                )}
 
-                                  <HospitalNameText
-                                    variant="caption"
-                                    fontSize="12px"
-                                    color={theme.colors.text.secondary}>
-                                    {session.name}
-                                  </HospitalNameText>
-                                </ListRow>
-
-                                <AddressText
-                                  variant="label"
-                                  fontSize="11px"
+                                <HospitalNameText
+                                  variant="caption"
+                                  fontSize="12px"
                                   color={theme.colors.text.secondary}>
-                                  {session.address},{session.district_name},
-                                  {session.state_name}
-                                </AddressText>
-                                <Listcolumn width="40%">
-                                  <ListItemText
+                                  {session.name}
+                                </HospitalNameText>
+                              </ListRow>
+
+                              <AddressText
+                                variant="label"
+                                fontSize="11px"
+                                color={theme.colors.text.secondary}>
+                                {session.address},{session.district_name},
+                                {session.state_name}
+                              </AddressText>
+                              <Listcolumn width="40%">
+                                <ListItemText
+                                  variant="label"
+                                  fontSize="10px"
+                                  color={theme.colors.text.secondary}>
+                                  {session.vaccine}
+                                </ListItemText>
+                                <CapacityWrapper>
+                                  <CapacityIcon
+                                    width={`${wp('4%')}px`}
+                                    height={`${wp('4%')}px`}
+                                    source={require('../../assets/icons/syringe_5.png')}
+                                  />
+                                  <Text
                                     variant="label"
                                     fontSize="10px"
                                     color={theme.colors.text.secondary}>
-                                    {session.vaccine}
-                                  </ListItemText>
-                                  <CapacityWrapper>
-                                    <CapacityIcon
-                                      width={`${wp('4%')}px`}
-                                      height={`${wp('4%')}px`}
-                                      source={require('../../assets/icons/syringe_5.png')}
-                                    />
-                                    <Text
-                                      variant="label"
-                                      fontSize="10px"
-                                      color={theme.colors.text.secondary}>
-                                      {''} {session.available_capacity_dose1}
-                                    </Text>
-                                    <CapacityIcon
-                                      marginLeft={`${wp('3%')}px`}
-                                      width={`${wp('4%')}px`}
-                                      height={`${wp('4%')}px`}
-                                      source={require('../../assets/icons/syringe_5.png')}
-                                    />
-                                    <CapacityIcon
-                                      width={`${wp('4%')}px`}
-                                      height={`${wp('4%')}px`}
-                                      source={require('../../assets/icons/syringe_5.png')}
-                                    />
-                                    <Text
-                                      variant="label"
-                                      fontSize="10px"
-                                      color={theme.colors.text.secondary}>
-                                      {''} {session.available_capacity_dose2}
-                                    </Text>
-                                  </CapacityWrapper>
-                                </Listcolumn>
-                              </ListItemCard>
-                            );
-                          })
-                        ) : (
-                          <Text>No Data Found, Please try again</Text>
-                        )}
-                      </ScrollView>
-                    </Listcolumn>
-                  </ListRow>
-                );
-              })
-            ) : (
-              <Text />
-            )}
-          </ListRow>
+                                    {''} {session.available_capacity_dose1}
+                                  </Text>
+                                  <CapacityIcon
+                                    marginLeft={`${wp('3%')}px`}
+                                    width={`${wp('4%')}px`}
+                                    height={`${wp('4%')}px`}
+                                    source={require('../../assets/icons/syringe_5.png')}
+                                  />
+                                  <CapacityIcon
+                                    width={`${wp('4%')}px`}
+                                    height={`${wp('4%')}px`}
+                                    source={require('../../assets/icons/syringe_5.png')}
+                                  />
+                                  <Text
+                                    variant="label"
+                                    fontSize="10px"
+                                    color={theme.colors.text.secondary}>
+                                    {''} {session.available_capacity_dose2}
+                                  </Text>
+                                </CapacityWrapper>
+                              </Listcolumn>
+                            </ListItemCard>
+                          );
+                        })
+                      ) : (
+                        <Text>No Data Found, Please try again</Text>
+                      )}
+                    </ScrollView>
+                  </Listcolumn>
+                </ListRow>
+              );
+            })
+          ) : (
+            <Text />
+          )}
         </ListWrapper>
       </Container>
     </Layout>
