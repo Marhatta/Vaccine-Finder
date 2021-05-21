@@ -160,38 +160,28 @@ const Appointments = ({navigation}) => {
             </Listcolumn>
           </ListRow>
           <ListRow>
-            <Listcolumn width="25%">
-              {data.length > 0 ? (
-                data.map((item, index) => {
-                  return (
-                    <ListRow>
+            {inputSessions.length > 0 ? (
+              inputSessions.map((item, index) => {
+                return (
+                  <ListRow key={index}>
+                    <Listcolumn width="25%">
                       <ListItemDateText key={index}>
-                        {item.label}
+                        {item.date}
                       </ListItemDateText>
-                    </ListRow>
-                  );
-                })
-              ) : (
-                <Text />
-              )}
-            </Listcolumn>
-            <Listcolumn width="85%">
-              {inputSessions.length > 0 ? (
-                inputSessions.map((item, index) => {
-                  return (
-                    <ListRow>
+                    </Listcolumn>
+                    <Listcolumn width="85%">
                       <ScrollView
                         horizontal={true}
                         showsHorizontalScrollIndicator={false}
                         scrollEventThrottle={300}
                         pagingEnabled
                         decelerationRate="fast">
-                        {inputSessions.length > 0 ? (
-                          inputSessions.map((item, index) => {
+                        {item.sessions.length > 0 ? (
+                          item.sessions.map((session, index) => {
                             return (
-                              <ListItemCard key={index}>
+                              <ListItemCard key={session.id}>
                                 <ListRow>
-                                  {item.fee_type === 'Paid' ? (
+                                  {session.fee_type === 'Paid' ? (
                                     <Icon
                                       width={`${wp('5%')}px`}
                                       height={`${hp('2.5%')}px`}
@@ -209,7 +199,7 @@ const Appointments = ({navigation}) => {
                                     variant="caption"
                                     fontSize="12px"
                                     color={theme.colors.text.secondary}>
-                                    {item.name}
+                                    {session.name}
                                   </HospitalNameText>
                                 </ListRow>
 
@@ -217,15 +207,15 @@ const Appointments = ({navigation}) => {
                                   variant="label"
                                   fontSize="11px"
                                   color={theme.colors.text.secondary}>
-                                  {item.address},{item.district_name},
-                                  {item.state_name}
+                                  {session.address},{session.district_name},
+                                  {session.state_name}
                                 </AddressText>
                                 <Listcolumn width="40%">
                                   <ListItemText
                                     variant="label"
                                     fontSize="10px"
                                     color={theme.colors.text.secondary}>
-                                    {item.vaccine}
+                                    {session.vaccine}
                                   </ListItemText>
                                   <CapacityWrapper>
                                     <CapacityIcon
@@ -237,7 +227,7 @@ const Appointments = ({navigation}) => {
                                       variant="label"
                                       fontSize="10px"
                                       color={theme.colors.text.secondary}>
-                                      {''} {item.available_capacity_dose1}
+                                      {''} {session.available_capacity_dose1}
                                     </Text>
                                     <CapacityIcon
                                       marginLeft={`${wp('3%')}px`}
@@ -254,7 +244,7 @@ const Appointments = ({navigation}) => {
                                       variant="label"
                                       fontSize="10px"
                                       color={theme.colors.text.secondary}>
-                                      {''} {item.available_capacity_dose2}
+                                      {''} {session.available_capacity_dose2}
                                     </Text>
                                   </CapacityWrapper>
                                 </Listcolumn>
@@ -265,13 +255,13 @@ const Appointments = ({navigation}) => {
                           <Text>No Data Found, Please try again</Text>
                         )}
                       </ScrollView>
-                    </ListRow>
-                  );
-                })
-              ) : (
-                <Text />
-              )}
-            </Listcolumn>
+                    </Listcolumn>
+                  </ListRow>
+                );
+              })
+            ) : (
+              <Text />
+            )}
           </ListRow>
         </ListWrapper>
       </Container>
