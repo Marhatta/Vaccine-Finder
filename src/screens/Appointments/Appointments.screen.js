@@ -1,8 +1,13 @@
 import React from 'react';
 import {useTheme} from 'styled-components/native';
 import {ActionSheet} from 'native-base';
-import {TouchableOpacity, ScrollView} from 'react-native';
+import {TouchableOpacity, ScrollView, View} from 'react-native';
+import {
+  heightPercentageToDP as hp,
+  widthPercentageToDP as wp,
+} from 'react-native-responsive-screen';
 import {Layout} from '../../components/core/Layout/Layout.component';
+import {Icon} from '../../components/common/Icon/Icon.component';
 import {
   Text,
   ActionSheetText,
@@ -182,17 +187,35 @@ const Appointments = ({navigation}) => {
                           inputSessions.map((item, index) => {
                             return (
                               <ListItemCard key={index}>
-                                <HospitalNameText
-                                  variant="caption"
-                                  fontSize="12px"
-                                  color={theme.colors.text.secondary}>
-                                  {item.name}
-                                </HospitalNameText>
+                                <ListRow>
+                                  {item.fee_type === 'Paid' ? (
+                                    <Icon
+                                      width={`${wp('5%')}px`}
+                                      height={`${hp('2.5%')}px`}
+                                      source={require('../../assets/icons/paid.png')}
+                                    />
+                                  ) : (
+                                    <Icon
+                                      width={`${wp('5%')}px`}
+                                      height={`${hp('2.5%')}px`}
+                                      source={require('../../assets/icons/free.png')}
+                                    />
+                                  )}
+
+                                  <HospitalNameText
+                                    variant="caption"
+                                    fontSize="12px"
+                                    color={theme.colors.text.secondary}>
+                                    {item.name}
+                                  </HospitalNameText>
+                                </ListRow>
+
                                 <AddressText
                                   variant="label"
                                   fontSize="10px"
                                   color={theme.colors.text.secondary}>
-                                  {item.address},{item.district_name},{item.state_name}
+                                  {item.address},{item.district_name},
+                                  {item.state_name}
                                 </AddressText>
                               </ListItemCard>
                             );
