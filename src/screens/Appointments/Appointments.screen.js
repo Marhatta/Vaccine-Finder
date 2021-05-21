@@ -1,7 +1,7 @@
 import React from 'react';
 import {useTheme} from 'styled-components/native';
 import {ActionSheet} from 'native-base';
-import {TouchableOpacity, ScrollView, View} from 'react-native';
+import {TouchableOpacity, ScrollView} from 'react-native';
 import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp,
@@ -30,7 +30,10 @@ import {
   ListItemDateText,
   ListItemCard,
   HospitalNameText,
+  ListItemText,
   AddressText,
+  CapacityWrapper,
+  CapacityIcon,
 } from './Appointments.styles';
 
 const Appointments = ({navigation}) => {
@@ -180,7 +183,7 @@ const Appointments = ({navigation}) => {
                       <ScrollView
                         horizontal={true}
                         showsHorizontalScrollIndicator={false}
-                        scrollEventThrottle={200}
+                        scrollEventThrottle={300}
                         pagingEnabled
                         decelerationRate="fast">
                         {inputSessions.length > 0 ? (
@@ -212,11 +215,49 @@ const Appointments = ({navigation}) => {
 
                                 <AddressText
                                   variant="label"
-                                  fontSize="10px"
+                                  fontSize="11px"
                                   color={theme.colors.text.secondary}>
                                   {item.address},{item.district_name},
                                   {item.state_name}
                                 </AddressText>
+                                <Listcolumn width="40%">
+                                  <ListItemText
+                                    variant="label"
+                                    fontSize="10px"
+                                    color={theme.colors.text.secondary}>
+                                    {item.vaccine}
+                                  </ListItemText>
+                                  <CapacityWrapper>
+                                    <CapacityIcon
+                                      width={`${wp('4%')}px`}
+                                      height={`${wp('4%')}px`}
+                                      source={require('../../assets/icons/syringe_5.png')}
+                                    />
+                                    <Text
+                                      variant="label"
+                                      fontSize="10px"
+                                      color={theme.colors.text.secondary}>
+                                      {''} {item.available_capacity_dose1}
+                                    </Text>
+                                    <CapacityIcon
+                                      marginLeft={`${wp('3%')}px`}
+                                      width={`${wp('4%')}px`}
+                                      height={`${wp('4%')}px`}
+                                      source={require('../../assets/icons/syringe_5.png')}
+                                    />
+                                    <CapacityIcon
+                                      width={`${wp('4%')}px`}
+                                      height={`${wp('4%')}px`}
+                                      source={require('../../assets/icons/syringe_5.png')}
+                                    />
+                                    <Text
+                                      variant="label"
+                                      fontSize="10px"
+                                      color={theme.colors.text.secondary}>
+                                      {''} {item.available_capacity_dose2}
+                                    </Text>
+                                  </CapacityWrapper>
+                                </Listcolumn>
                               </ListItemCard>
                             );
                           })

@@ -4,6 +4,7 @@ import {
   widthPercentageToDP as wp,
 } from 'react-native-responsive-screen';
 import {Text} from '../../components/common/Typography/Text.component';
+import {Icon} from '../../components/common/Icon/Icon.component';
 import {Tab, Tabs} from 'native-base';
 import {View} from 'react-native';
 import {Card} from 'native-base';
@@ -47,13 +48,12 @@ export const ListItemDateText = styled(Text)`
 `;
 
 export const ListItemText = styled(Text)`
-  margin-bottom: ${hp('2%')}px;
 `;
 
 export const ListItemCard = styled(Card)`
   margin-left: ${wp('2%')}px;
   margin-right: ${wp('2%')}px;
-  height: ${wp('20%')}px;
+  height: ${wp('25%')}px;
   width: ${wp('58%')}px;
   padding: ${wp('1%')}px;
 `;
@@ -64,4 +64,13 @@ export const HospitalNameText = styled(Text)`
 
 export const AddressText = styled(Text)`
   margin-top: -15px;
+`;
+
+export const CapacityWrapper = styled(View)`
+  display: flex;
+  flex-direction: row;
+`;
+
+export const CapacityIcon = styled(Icon)`
+  margin-left: ${props => (props.marginLeft ? props.marginLeft : '0%')};
 `;
