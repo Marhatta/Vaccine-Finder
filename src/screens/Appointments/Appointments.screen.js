@@ -14,6 +14,8 @@ import {
 } from '../../components/common/Typography/Text.component';
 import {Button} from '../../components/common/Button/Button.component';
 import {CovidInfoInput} from '../../components/common/Input/Input.component';
+import {connect} from 'react-redux';
+import {getVaccinationCentersByPicode} from '../../redux/vaccination/vaccination.actions';
 import {TabHeading} from 'native-base';
 import inputStates from './states';
 import inputDistricts from './district';
@@ -34,6 +36,7 @@ import {
   AddressText,
   CapacityWrapper,
   CapacityIcon,
+  InputView,
 } from './Appointments.styles';
 
 const Appointments = ({navigation}) => {
@@ -77,7 +80,7 @@ const Appointments = ({navigation}) => {
   console.log(data);
 
   return (
-    <Layout navigation={navigation}>
+    <Layout navigation={(navigation, getVaccinationCentersByPicode)}>
       <Container>
         <HeaderWrapper>
           <TabsWrapper
@@ -144,11 +147,13 @@ const Appointments = ({navigation}) => {
               </TouchableOpacity>
             </CustomTab>
           </TabsWrapper>
-          <Button
-            text="searh"
-            color={theme.colors.text.primary}
-            textTransform="capitalize"
-          />
+          <InputView>
+            <Button
+              title="Search"
+              full
+              onPress={() => getVaccinationCentersByPicode()}
+            />
+          </InputView>
         </HeaderWrapper>
         <ListWrapper>
           <ListRow>
@@ -265,4 +270,4 @@ const Appointments = ({navigation}) => {
   );
 };
 
-export default Appointments;
+export default connect(null, {getVaccinationCentersByPicode})(Appointments);

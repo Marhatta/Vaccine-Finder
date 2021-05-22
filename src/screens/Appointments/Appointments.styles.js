@@ -74,3 +74,9 @@ export const CapacityWrapper = styled(View)`
 export const CapacityIcon = styled(Icon)`
   margin-left: ${props => (props.marginLeft ? props.marginLeft : '0%')};
 `;
+
+export const InputView = styled.View`
+  margin-bottom: ${hp('2%')}px;
+  margin-left: ${wp('2%')}px;
+  margin-right: ${wp('2%')}px;
+`;
