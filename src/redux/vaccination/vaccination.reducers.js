@@ -7,11 +7,11 @@ import {
 } from './vaccination.types';
 
 const initialState = {
-  loadingVaccinationCenters: true,
+  loadingVaccinationCenters: false,
   loadingVaccinationCentersSuccess: false,
   loadingVaccinationCentersError: false,
   vaccinationCenters: null,
-  VaccinationCentersError: null,
+  vaccinationCentersError: null,
   search: null,
 };
 

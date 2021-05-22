@@ -10,15 +10,23 @@ import {
 } from './vaccination.actions';
 
 //==================GET: Vaccination Center By Pincode ===========================//
-export function* getVaccinationCentersByPincodeAsync({payload: pincode}) {
+export function* getVaccinationCentersByPincodeAsync({payload}) {
   try {
     let centers = yield getData(
-      'https://cdn-api.co-vin.in/api/v2/admin/location/states',
-      {'Accept-Language': '', accept: 'application/json'},
+      `https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/findByPin?pincode=${payload.pincode}&date=${payload.date}`,
+      {
+        'User-Agent':
+          'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.95 Safari/537.36',
+      },
     );
-    console.log('=======', centers);
     if (centers) {
-      yield put(getVaccinationCentersSuccess(centers));
+      yield put(
+        getVaccinationCentersSuccess([{
+            date: payload.date,
+            sessions: centers.sessions,
+          },
+        ]),
+      );
     } else {
     }
   } catch (error) {

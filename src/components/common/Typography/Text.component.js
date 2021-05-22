@@ -43,13 +43,3 @@ export const Text = styled.Text`
 Text.defaultProps = {
   variant: 'body',
 };
-
-export const ActionSheetText = styled.Text`
-  color:${({color, theme}) => (color ? color : theme.colors.text.primary)}
-  padding: 10px;
-  margin: 5px;
-  border-bottom-width: 2px;
-  border-bottom-color: ${props =>
-    props.color ? props.color : props.theme.colors.ui.primary};
-  width: ${wp('43%')}px;
-`;

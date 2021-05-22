@@ -12,7 +12,6 @@ export const getData = (url, headers) => {
       if (url.includes('https://api.twitter.com/2/tweets/search/recent')) {
         return response;
       } else {
-        console.log('=========response=========', response);
         return response.data;
       }
     })
