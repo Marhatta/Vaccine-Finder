@@ -6,7 +6,7 @@ import {
   SET_SEARCH_BY,
 } from './vaccination.types';
 
-export const getVaccinationCentersByPicode = pincode => {
+export const getVaccinationCentersByPincode = pincode => {
   return {
     type: GET_VACCINATION_CENTERS_BY_PINCODE,
     payload: pincode,

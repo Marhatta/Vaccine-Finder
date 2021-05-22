@@ -15,7 +15,7 @@ import {
 import {Button} from '../../components/common/Button/Button.component';
 import {CovidInfoInput} from '../../components/common/Input/Input.component';
 import {connect} from 'react-redux';
-import {getVaccinationCentersByPicode} from '../../redux/vaccination/vaccination.actions';
+import {getVaccinationCentersByPincode} from '../../redux/vaccination/vaccination.actions';
 import {TabHeading} from 'native-base';
 import inputStates from './states';
 import inputDistricts from './district';
@@ -39,7 +39,7 @@ import {
   InputView,
 } from './Appointments.styles';
 
-const Appointments = ({navigation}) => {
+const Appointments = ({navigation, getVaccinationCentersByPincode}) => {
   const theme = useTheme();
   const [selectedState, setSelectedState] = React.useState('Select State');
   const [selectedDistrict, setSelectedDistrict] =
@@ -80,7 +80,7 @@ const Appointments = ({navigation}) => {
   console.log(data);
 
   return (
-    <Layout navigation={(navigation, getVaccinationCentersByPicode)}>
+    <Layout navigation={navigation}>
       <Container>
         <HeaderWrapper>
           <TabsWrapper
@@ -151,7 +151,7 @@ const Appointments = ({navigation}) => {
             <Button
               title="Search"
               full
-              onPress={() => getVaccinationCentersByPicode()}
+              onPress={() => getVaccinationCentersByPincode()}
             />
           </InputView>
         </HeaderWrapper>
@@ -270,4 +270,4 @@ const Appointments = ({navigation}) => {
   );
 };
 
-export default connect(null, {getVaccinationCentersByPicode})(Appointments);
+export default connect(null, {getVaccinationCentersByPincode})(Appointments);

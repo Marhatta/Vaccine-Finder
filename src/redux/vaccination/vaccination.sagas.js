@@ -11,16 +11,18 @@ import {
 
 //==================GET: Vaccination Center By Pincode ===========================//
 export function* getVaccinationCentersByPincodeAsync({payload: pincode}) {
-  console.log(pincode);
   try {
     let centers = yield getData(
-      `https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/findByPin?pincode=110001&date=31-03-2021`,
+      'https://cdn-api.co-vin.in/api/v2/admin/location/states',
+      {'Accept-Language': '', accept: 'application/json'},
     );
+    console.log('=======', centers);
     if (centers) {
       yield put(getVaccinationCentersSuccess(centers));
     } else {
     }
   } catch (error) {
+    console.log(error);
     yield put(getVaccinationCentersError(error));
   }
 }
