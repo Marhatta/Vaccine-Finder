@@ -14,14 +14,11 @@ export function* getVaccinationCentersByPincodeAsync({payload}) {
   try {
     let centers = yield getData(
       `https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/findByPin?pincode=${payload.pincode}&date=${payload.date}`,
-      {
-        'User-Agent':
-          'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.95 Safari/537.36',
-      },
     );
     if (centers) {
       yield put(
-        getVaccinationCentersSuccess([{
+        getVaccinationCentersSuccess([
+          {
             date: payload.date,
             sessions: centers.sessions,
           },

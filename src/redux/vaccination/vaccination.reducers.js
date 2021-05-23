@@ -10,9 +10,9 @@ const initialState = {
   loadingVaccinationCenters: false,
   loadingVaccinationCentersSuccess: false,
   loadingVaccinationCentersError: false,
-  vaccinationCenters: null,
+  vaccinationCenters: [],
   vaccinationCentersError: null,
-  search: null,
+  searchBy: null,
 };
 
 const vaccinationReducer = (state = initialState, action) => {
@@ -21,16 +21,18 @@ const vaccinationReducer = (state = initialState, action) => {
       return {
         ...state,
         loadingVaccinationCenters: true,
+        searchBy: `pincode-${action.payload.pincode}`, //pincode-180013
       };
     case GET_VACCINATION_CENTERS_BY_DISTRICT:
       return {
         ...state,
         loadingVaccinationCenters: true,
+        searchBy: `district-${action.payload.pincode}`, //district-22
       };
     case GET_VACCINATION_CENTERS_SUCCESS:
       return {
         ...state,
-        vaccinationCenters: action.payload,
+        vaccinationCenters: [...state.vaccinationCenters, ...action.payload],
         loadingVaccinationCenters: false,
         loadingVaccinationCentersSuccess: true,
       };
@@ -40,11 +42,6 @@ const vaccinationReducer = (state = initialState, action) => {
         loadingVaccinationCenters: false,
         loadingVaccinationCentersError: true,
         VaccinationCentersError: action.payload,
-      };
-    case SET_SEARCH_BY:
-      return {
-        ...state,
-        search: action.payload,
       };
     default:
       return state;

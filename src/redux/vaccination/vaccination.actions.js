@@ -3,7 +3,6 @@ import {
   GET_VACCINATION_CENTERS_BY_DISTRICT,
   GET_VACCINATION_CENTERS_SUCCESS,
   GET_VACCINATION_CENTERS_ERROR,
-  SET_SEARCH_BY,
 } from './vaccination.types';
 
 export const getVaccinationCentersByPincode = (pincode, date) => {
@@ -31,12 +30,5 @@ export const getVaccinationCentersError = error => {
   return {
     type: GET_VACCINATION_CENTERS_ERROR,
     payload: error.message,
-  };
-};
-
-export const setCenterSearchBy = search => {
-  return {
-    type: SET_SEARCH_BY,
-    payload: search,
   };
 };
