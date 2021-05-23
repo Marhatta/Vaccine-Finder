@@ -1,5 +1,5 @@
 import React from 'react';
-import {ActionSheet, TabHeading} from 'native-base';
+import {ActionSheet, TabHeading, Spinner} from 'native-base';
 import {createStructuredSelector} from 'reselect';
 import {useTheme} from 'styled-components/native';
 import {TouchableOpacity, ScrollView} from 'react-native';
@@ -19,6 +19,7 @@ import {
   selectVaccinationCenters,
 } from '../../redux/vaccination/vaccination.selectors';
 import inputDistricts from './district';
+import {VaccinationCenterCard} from './components/VaccinationCenterCard.component';
 
 import {
   Container,
@@ -93,12 +94,10 @@ const Vaccination = ({
               backgroundColor: theme.colors.ui.primary,
             }}>
             <CustomTab
-              style={{backgroundColor: theme.colors.bg.secondary}}
               heading={
                 <TabHeading
                   style={{
-                    backgroundColor: theme.colors.bg.secondary,
-                    color: theme.colors.text.primary,
+                    backgroundColor: theme.colors.bg.primary,
                   }}>
                   <Text>Pincode</Text>
                 </TabHeading>
@@ -112,10 +111,8 @@ const Vaccination = ({
               />
             </CustomTab>
             <CustomTab
-              style={{backgroundColor: theme.colors.bg.secondary}}
               heading={
-                <TabHeading
-                  style={{backgroundColor: theme.colors.bg.secondary}}>
+                <TabHeading style={{backgroundColor: theme.colors.bg.primary}}>
                   <Text>District</Text>
                 </TabHeading>
               }>
@@ -163,8 +160,11 @@ const Vaccination = ({
             />
           </InputView>
         </HeaderWrapper>
-        {vaccinationCenters.vaccinationCenters &&
-        vaccinationCenters.vaccinationCenters.length > 0 ? (
+        {/* {vaccinationCenters.loading ? (
+          <Spinner />
+        ) : vaccinationCenters.vaccinationCenters.length === 0 ? (
+          <Text>NO data</Text>
+        ) : (
           vaccinationCenters.vaccinationCenters.map((item, index) => {
             return (
               <ListWrapper key={index}>
@@ -257,8 +257,18 @@ const Vaccination = ({
               </ListWrapper>
             );
           })
+        )} */}
+        {vaccinationCenters.loading ? (
+          <Spinner />
         ) : (
-          <Text />
+          vaccinationCenters.centers.map(vaccinationCenter => {
+            return (
+              <VaccinationCenterCard
+                key={vaccinationCenter.center_id}
+                vacinationCenter={vaccinationCenter}
+              />
+            );
+          })
         )}
       </Container>
     </Layout>

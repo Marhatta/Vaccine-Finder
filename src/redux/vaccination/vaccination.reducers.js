@@ -3,7 +3,6 @@ import {
   GET_VACCINATION_CENTERS_BY_DISTRICT,
   GET_VACCINATION_CENTERS_SUCCESS,
   GET_VACCINATION_CENTERS_ERROR,
-  SET_SEARCH_BY,
 } from './vaccination.types';
 
 const initialState = {
@@ -32,7 +31,7 @@ const vaccinationReducer = (state = initialState, action) => {
     case GET_VACCINATION_CENTERS_SUCCESS:
       return {
         ...state,
-        vaccinationCenters: [...state.vaccinationCenters, ...action.payload],
+        vaccinationCenters: action.payload,
         loadingVaccinationCenters: false,
         loadingVaccinationCentersSuccess: true,
       };

@@ -13,17 +13,10 @@ import {
 export function* getVaccinationCentersByPincodeAsync({payload}) {
   try {
     let centers = yield getData(
-      `https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/findByPin?pincode=${payload.pincode}&date=${payload.date}`,
+      `https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/calendarByPin?pincode=${payload.pincode}&date=${payload.date}`,
     );
     if (centers) {
-      yield put(
-        getVaccinationCentersSuccess([
-          {
-            date: payload.date,
-            sessions: centers.sessions,
-          },
-        ]),
-      );
+      yield put(getVaccinationCentersSuccess(centers));
     } else {
     }
   } catch (error) {

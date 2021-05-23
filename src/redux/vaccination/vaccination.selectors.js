@@ -17,8 +17,8 @@ export const selectVaccinationCenters = createSelector(
       loading: vaccination.loadingVaccinationCenters,
       loadingSuccess: vaccination.loadingVaccinationCentersSuccess,
       loadingError: vaccination.loadingVaccinationCentersError,
-      vaccinationCenters: vaccination.vaccinationCenters,
-      vaccinationCentersError:
+      centers: vaccination.vaccinationCenters.centers,
+      centersError:
         vaccination.vaccinationCentersError?.vaccinationCentersError,
     };
   },
