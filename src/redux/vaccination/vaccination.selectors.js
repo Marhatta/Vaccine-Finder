@@ -1,14 +1,21 @@
 import {createSelector} from 'reselect';
 
 const selectVaccination = state => state.vaccinationCenters;
-const selectStats = state => state.stats;
 
-export const selectStates = createSelector([selectStats], stats => {
+export const selectStates = createSelector([selectVaccination], vaccination => {
   return {
-    stateList: stats.states,
-    selectedState: stats.selectedState,
+    stateList: vaccination.vaccinationStates,
   };
 });
+
+export const selectDistricts = createSelector(
+  [selectVaccination],
+  vaccination => {
+    return {
+      districtList: vaccination.vaccinationDistricts,
+    };
+  },
+);
 
 export const selectVaccinationCenters = createSelector(
   [selectVaccination],

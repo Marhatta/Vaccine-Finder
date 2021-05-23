@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {ActionSheet, TabHeading} from 'native-base';
 import {createStructuredSelector} from 'reselect';
 import {useTheme} from 'styled-components/native';
@@ -13,12 +13,17 @@ import {Text} from '../../components/common/Typography/Text.component';
 import {Button} from '../../components/common/Button/Button.component';
 import {CovidInfoInput} from '../../components/common/Input/Input.component';
 import {connect} from 'react-redux';
-import {getVaccinationCentersByPincode} from '../../redux/vaccination/vaccination.actions';
+import {
+  getVaccinationCentersByPincode,
+  getVaccinationCentersByDistrict,
+  getVaccinationStates,
+  getVaccinationDistricts,
+} from '../../redux/vaccination/vaccination.actions';
 import {
   selectStates,
   selectVaccinationCenters,
+  selectDistricts,
 } from '../../redux/vaccination/vaccination.selectors';
-import inputDistricts from './district';
 
 import {
   Container,
@@ -42,47 +47,28 @@ import {
 const Vaccination = ({
   navigation,
   getVaccinationCentersByPincode,
+  getVaccinationCentersByDistrict,
+  getVaccinationStates,
+  getVaccinationDistricts,
   states,
+  districts,
   vaccinationCenters,
 }) => {
+  useEffect(() => {
+    getVaccinationStates();
+  }, []);
+
   const theme = useTheme();
-  const [pincode, setPincode] = React.useState();
-  const [selectedState, setSelectedState] = React.useState('Select State');
-  const [selectedDistrict, setSelectedDistrict] =
-    React.useState('Select District');
-  // TODO: Replace by API
-  let newStates = [];
-  states.stateList.forEach(state => {
-    newStates.push(state.state_name);
+  const [pincode, setPincode] = useState();
+  const [activeTab, setActiveTab] = useState('pincode');
+  const [selectedState, setSelectedState] = useState({
+    state_id: 0,
+    state_name: 'Select State',
   });
-  let districts = [];
-  inputDistricts.forEach(district => {
-    districts.push(district.district_name);
+  const [selectedDistrict, setSelectedDistrict] = useState({
+    district_id: 0,
+    district_name: 'Select District',
   });
-
-  // const getWeekFromStartDay = (start, noOfDay) => {
-  //   var weekDays = [];
-  //   var curr;
-  //   for (let i = start + 1; i <= start + noOfDay; i++) {
-  //     curr = new Date(); // get current date
-  //     let first = curr.getDate() - curr.getDay() + i;
-  //     let day = new Date(curr.setDate(first)).toISOString().slice(0, 10);
-  //     weekDays.push({
-  //       label: new Date(day)
-  //         .toLocaleDateString('en-IN', {
-  //           day: 'numeric',
-  //           month: 'short',
-  //         })
-  //         .split(' ')
-  //         .join('-'),
-  //       date: day,
-  //     });
-  //   }
-  //   return weekDays;
-  // };
-
-  // let data = getWeekFromStartDay(3, 7);
-  // console.log(data);
 
   return (
     <Layout navigation={navigation}>
@@ -91,6 +77,10 @@ const Vaccination = ({
           <TabsWrapper
             tabBarUnderlineStyle={{
               backgroundColor: theme.colors.ui.primary,
+            }}
+            onChangeTab={g => {
+              console.log(g);
+              g.i === 1 ? setActiveTab('district') : setActiveTab('pincode');
             }}>
             <CustomTab
               style={{backgroundColor: theme.colors.bg.secondary}}
@@ -124,15 +114,24 @@ const Vaccination = ({
                   onPress={() =>
                     ActionSheet.show(
                       {
-                        options: newStates,
+                        options: states.stateList.map(
+                          state => state.state_name,
+                        ),
+                        cancelButtonIndex: states.stateList.length - 1,
                         title: 'Select State',
                       },
                       buttonIndex => {
-                        setSelectedState(newStates[buttonIndex]);
+                        //If cancel button or user pressed the state which is already selected, return
+                        if (buttonIndex === states.stateList.length - 1) {
+                          return;
+                        }
+                        let state = states.stateList[buttonIndex];
+                        setSelectedState(state);
+                        getVaccinationDistricts(state.state_id);
                       },
                     )
                   }>
-                  {selectedState}
+                  {selectedState.state_name}
                 </ActionSheetText>
               </TouchableOpacity>
               <TouchableOpacity>
@@ -140,15 +139,23 @@ const Vaccination = ({
                   onPress={() =>
                     ActionSheet.show(
                       {
-                        options: districts,
+                        options: districts.districtList.map(
+                          district => district.district_name,
+                        ),
+                        cancelButtonIndex: districts.districtList.length - 1,
                         title: 'Select District',
                       },
                       buttonIndex => {
-                        setSelectedDistrict(districts[buttonIndex]);
+                        //If cancel button or user pressed the state which is already selected, return
+                        if (buttonIndex === districts.districtList.length - 1) {
+                          return;
+                        }
+                        let district = districts.districtList[buttonIndex];
+                        setSelectedDistrict(district);
                       },
                     )
                   }>
-                  {selectedDistrict}
+                  {selectedDistrict.district_name}
                 </ActionSheetText>
               </TouchableOpacity>
             </CustomTab>
@@ -157,9 +164,17 @@ const Vaccination = ({
             <Button
               title="Search"
               full
-              onPress={() =>
-                getVaccinationCentersByPincode(pincode, '20-05-2021')
-              }
+              onPress={() => {
+                if (activeTab === 'pincode') {
+                  getVaccinationCentersByPincode(pincode, '20-05-2021');
+                }
+                if (activeTab === 'district') {
+                  getVaccinationCentersByDistrict(
+                    selectedDistrict.district_id,
+                    '20-05-2021',
+                  );
+                }
+              }}
             />
           </InputView>
         </HeaderWrapper>
@@ -267,9 +282,13 @@ const Vaccination = ({
 
 const mapStateToProps = createStructuredSelector({
   states: selectStates,
+  districts: selectDistricts,
   vaccinationCenters: selectVaccinationCenters,
 });
 
-export default connect(mapStateToProps, {getVaccinationCentersByPincode})(
-  Vaccination,
-);
+export default connect(mapStateToProps, {
+  getVaccinationCentersByPincode,
+  getVaccinationCentersByDistrict,
+  getVaccinationStates,
+  getVaccinationDistricts,
+})(Vaccination);
