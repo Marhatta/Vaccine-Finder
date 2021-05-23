@@ -1,14 +1,21 @@
 import {createSelector} from 'reselect';
 
 const selectVaccination = state => state.vaccinationCenters;
-const selectStats = state => state.stats;
 
-export const selectStates = createSelector([selectStats], stats => {
+export const selectStates = createSelector([selectVaccination], vaccination => {
   return {
-    stateList: stats.states,
-    selectedState: stats.selectedState,
+    stateList: vaccination.vaccinationStates,
   };
 });
+
+export const selectDistricts = createSelector(
+  [selectVaccination],
+  vaccination => {
+    return {
+      districtList: vaccination.vaccinationDistricts,
+    };
+  },
+);
 
 export const selectVaccinationCenters = createSelector(
   [selectVaccination],
@@ -17,7 +24,8 @@ export const selectVaccinationCenters = createSelector(
       loading: vaccination.loadingVaccinationCenters,
       loadingSuccess: vaccination.loadingVaccinationCentersSuccess,
       loadingError: vaccination.loadingVaccinationCentersError,
-      centers: vaccination.vaccinationCenters.centers,
+      centerList: vaccination.vaccinationCenters,
+      searchBy: vaccination.searchBy,
       centersError:
         vaccination.vaccinationCentersError?.vaccinationCentersError,
     };

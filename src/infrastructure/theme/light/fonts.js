@@ -1,3 +1,4 @@
+import {heightPercentageToDP as hp} from 'react-native-responsive-screen';
 export const fonts = {
   regular: 'Poppins-Regular',
   medium: 'Poppins-Medium',
@@ -5,13 +6,8 @@ export const fonts = {
 };
 
 export const fontSizes = {
-  caption: '12px',
-  button: '14px',
-  body: '16px',
-  title: '20px',
-  h5: '24px',
-  h4: '34px',
-  h3: '45px',
-  h2: '56px',
-  h1: '112px',
+  caption: `${hp('2%')}px`,
+  body: `${hp('2.1%')}px`,
+  title: `${hp('2.4%')}px`,
+  faded: `${hp('1.8%')}px`,
 };

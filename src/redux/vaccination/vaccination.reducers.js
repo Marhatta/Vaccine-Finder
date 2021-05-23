@@ -3,6 +3,12 @@ import {
   GET_VACCINATION_CENTERS_BY_DISTRICT,
   GET_VACCINATION_CENTERS_SUCCESS,
   GET_VACCINATION_CENTERS_ERROR,
+  GET_VACCINATION_STATES,
+  GET_VACCINATION_STATES_SUCCESS,
+  GET_VACCINATION_STATES_ERROR,
+  GET_VACCINATION_DISTRICTS,
+  GET_VACCINATION_DISTRICTS_SUCCESS,
+  GET_VACCINATION_DISTRICTS_ERROR,
 } from './vaccination.types';
 
 const initialState = {
@@ -11,7 +17,17 @@ const initialState = {
   loadingVaccinationCentersError: false,
   vaccinationCenters: [],
   vaccinationCentersError: null,
-  searchBy: null,
+  searchBy: 'pincode',
+  vaccinationStates: null,
+  loadingVaccinationStates: false,
+  loadingVaccinationStatesSuccess: false,
+  loadingVaccinationStatesError: false,
+  vaccinationStatesError: null,
+  vaccinationDistricts: null,
+  loadingVaccinationDistricts: false,
+  loadingVaccinationDistrictsSuccess: false,
+  loadingVaccinationDistrictsError: false,
+  vaccinationDistrictsError: null,
 };
 
 const vaccinationReducer = (state = initialState, action) => {
@@ -40,7 +56,45 @@ const vaccinationReducer = (state = initialState, action) => {
         ...state,
         loadingVaccinationCenters: false,
         loadingVaccinationCentersError: true,
-        VaccinationCentersError: action.payload,
+        vaccinationCentersError: action.payload,
+      };
+    case GET_VACCINATION_STATES:
+      return {
+        ...state,
+        loadingVaccinationStates: true,
+      };
+    case GET_VACCINATION_STATES_SUCCESS:
+      return {
+        ...state,
+        vaccinationStates: action.payload,
+        loadingVaccinationStates: false,
+        loadingVaccinationStatesSuccess: true,
+      };
+    case GET_VACCINATION_STATES_ERROR:
+      return {
+        ...state,
+        loadingVaccinationStates: false,
+        loadingVaccinationStatesError: true,
+        vaccinationStatesError: action.payload,
+      };
+    case GET_VACCINATION_DISTRICTS:
+      return {
+        ...state,
+        loadingVaccinationDistricts: true,
+      };
+    case GET_VACCINATION_DISTRICTS_SUCCESS:
+      return {
+        ...state,
+        vaccinationDistricts: action.payload,
+        loadingVaccinationDistricts: false,
+        loadingVaccinationDistrictsSuccess: true,
+      };
+    case GET_VACCINATION_DISTRICTS_ERROR:
+      return {
+        ...state,
+        loadingVaccinationDistricts: false,
+        loadingVaccinationDistrictsError: true,
+        vaccinationDistrictsError: action.payload,
       };
     default:
       return state;

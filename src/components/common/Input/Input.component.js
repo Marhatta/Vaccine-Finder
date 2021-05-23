@@ -1,6 +1,6 @@
 import React from 'react';
 import {CustomInput} from './Input.styles';
 
-export const CovidInfoInput = ({...props}) => {
+export const Input = ({...props}) => {
   return <CustomInput {...props} />;
 };
