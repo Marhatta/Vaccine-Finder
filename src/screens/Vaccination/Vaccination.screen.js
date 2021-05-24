@@ -144,14 +144,19 @@ const Vaccination = ({
               <Selector>
                 <ActionSheetText
                   onPress={() =>
+                    states.loadingVaccinationStatesSuccess &&
                     ActionSheet.show(
                       {
                         options: states.stateList.map(
                           state => state.state_name,
                         ),
                         title: 'Select State',
+                        cancelButtonIndex: states.stateList.length - 1,
                       },
                       buttonIndex => {
+                        if (buttonIndex === states.stateList.length - 1) {
+                          return;
+                        }
                         let state = states.stateList[buttonIndex];
                         setSelectedState(state);
                         getVaccinationDistricts(state.state_id);
@@ -168,14 +173,19 @@ const Vaccination = ({
               <Selector>
                 <ActionSheetText
                   onPress={() =>
+                    districts.loadingVaccinationDistrictsSuccess &&
                     ActionSheet.show(
                       {
                         options: districts.districtList.map(
                           district => district.district_name,
                         ),
                         title: 'Select District',
+                        cancelButtonIndex: districts.districtList.length - 1,
                       },
                       buttonIndex => {
+                        if (buttonIndex === districts.districtList.length - 1) {
+                          return;
+                        }
                         let district = districts.districtList[buttonIndex];
                         setSelectedDistrict(district);
                       },

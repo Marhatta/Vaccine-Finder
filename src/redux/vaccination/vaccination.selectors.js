@@ -5,6 +5,8 @@ const selectVaccination = state => state.vaccinationCenters;
 export const selectStates = createSelector([selectVaccination], vaccination => {
   return {
     stateList: vaccination.vaccinationStates,
+    loadingVaccinationStatesSuccess:
+      vaccination.loadingVaccinationStatesSuccess,
   };
 });
 
@@ -13,6 +15,8 @@ export const selectDistricts = createSelector(
   vaccination => {
     return {
       districtList: vaccination.vaccinationDistricts,
+      loadingVaccinationDistrictsSuccess:
+        vaccination.loadingVaccinationDistrictsSuccess,
     };
   },
 );

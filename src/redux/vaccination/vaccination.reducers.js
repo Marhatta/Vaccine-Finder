@@ -18,12 +18,12 @@ const initialState = {
   vaccinationCenters: [],
   vaccinationCentersError: null,
   searchBy: 'pincode',
-  vaccinationStates: null,
+  vaccinationStates: [],
   loadingVaccinationStates: false,
   loadingVaccinationStatesSuccess: false,
   loadingVaccinationStatesError: false,
   vaccinationStatesError: null,
-  vaccinationDistricts: null,
+  vaccinationDistricts: [],
   loadingVaccinationDistricts: false,
   loadingVaccinationDistrictsSuccess: false,
   loadingVaccinationDistrictsError: false,
@@ -66,7 +66,10 @@ const vaccinationReducer = (state = initialState, action) => {
     case GET_VACCINATION_STATES_SUCCESS:
       return {
         ...state,
-        vaccinationStates: action.payload,
+        vaccinationStates: [
+          ...action.payload,
+          {state_id: 40, state_name: 'Cancel'},
+        ],
         loadingVaccinationStates: false,
         loadingVaccinationStatesSuccess: true,
       };
@@ -85,7 +88,10 @@ const vaccinationReducer = (state = initialState, action) => {
     case GET_VACCINATION_DISTRICTS_SUCCESS:
       return {
         ...state,
-        vaccinationDistricts: action.payload,
+        vaccinationDistricts: [
+          ...action.payload,
+          {district_id: 100, district_name: 'Cancel'},
+        ],
         loadingVaccinationDistricts: false,
         loadingVaccinationDistrictsSuccess: true,
       };
