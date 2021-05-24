@@ -6,7 +6,8 @@ export const CustomInput = styled(Input)`
   background-color:${({color, theme}) =>
     color ? color : theme.colors.bg.primary}
   padding: 10px;
-  border-bottom-width: 1px;
+  border-bottom-width: .5px;
+  opacity:.6;
   border-bottom-color: ${props =>
-    props.color ? props.color : props.theme.colors.ui.primary};
+    props.color ? props.color : props.theme.colors.text.secondary};
 `;

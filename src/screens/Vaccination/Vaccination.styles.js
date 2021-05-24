@@ -21,20 +21,23 @@ export const CustomTab = styled(Tab)`
   height: ${hp('7%')}px;
   display: flex;
   flex-direction: row;
+  align-items: center;
+  justify-content: center;
 `;
 
 export const ActionSheetText = styled(Text)`
   color:${({color, theme}) => (color ? color : theme.colors.text.primary)}
   padding: 10px;
   margin: 5px;
-  border-bottom-width: 2px;
+  border-bottom-width: .5px;
   border-bottom-color: ${props =>
-    props.color ? props.color : props.theme.colors.ui.primary};
+    props.color ? props.color : props.theme.colors.text.secondary};
+    opacity:.6;
   width: ${wp('43%')}px;
 `;
 
 export const ButtonContainer = styled.View`
-  margin-bottom: ${hp('2%')}px;
+  margin-vertical: ${hp('2%')}px;
 `;
 
 export const Selector = styled.TouchableOpacity`

@@ -18,8 +18,6 @@ export const VaccinationCenterDistrictCard = ({vaccinationCenter}) => {
       <Text variant="label">{vaccinationCenter.name}</Text>
       <Text variant="faded">{vaccinationCenter.address}</Text>
 
-      <Text fontSize={`${hp('2%')}px`}>{vaccinationCenter.date}</Text>
-
       <CapacityContainer>
         <Text>Capacity</Text>
         <Spacer position="left" size="medium" />

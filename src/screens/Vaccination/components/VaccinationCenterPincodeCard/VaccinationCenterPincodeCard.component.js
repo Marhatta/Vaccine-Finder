@@ -26,25 +26,26 @@ export const VaccinationCenterPincodeCard = ({vacinationCenter}) => {
       <Text variant="label">{vacinationCenter.name}</Text>
       <Text variant="faded">{vacinationCenter.address}</Text>
       <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-        {vacinationCenter.sessions.map(session => {
-          const active = activeSession.session_id === session.session_id;
-          return (
-            <DateContainer
-              activeOpacity={0.7}
-              active={active}
-              key={session.session_id}
-              onPress={() => {
-                LayoutAnimation.easeInEaseOut();
-                setActiveSession(session);
-              }}>
-              <Text
-                color={active ? 'white' : theme.colors.text.primary}
-                fontSize={active ? `${hp('2%')}px` : `${hp('1.8%')}px`}>
-                {session.date}
-              </Text>
-            </DateContainer>
-          );
-        })}
+        {vacinationCenter.sessions &&
+          vacinationCenter.sessions.map(session => {
+            const active = activeSession.session_id === session.session_id;
+            return (
+              <DateContainer
+                activeOpacity={0.7}
+                active={active}
+                key={session.session_id}
+                onPress={() => {
+                  LayoutAnimation.easeInEaseOut();
+                  setActiveSession(session);
+                }}>
+                <Text
+                  color={active ? 'white' : theme.colors.text.primary}
+                  fontSize={active ? `${hp('2%')}px` : `${hp('1.8%')}px`}>
+                  {session.date}
+                </Text>
+              </DateContainer>
+            );
+          })}
       </ScrollView>
       <View>
         <CapacityContainer>
