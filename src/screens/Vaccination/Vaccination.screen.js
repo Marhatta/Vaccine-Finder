@@ -62,19 +62,24 @@ const Vaccination = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  const defaultSelectedState = {
+    state_id: 0,
+    state_name: 'Select State',
+  };
+  const defaultSelectedDistrict = {
+    district_id: 0,
+    district_name: 'Select District',
+  };
+
   const theme = useTheme();
   const [pincode, setPincode] = useState();
   const [showPicker, setShowPicker] = useState(false);
   const [date, setDate] = useState(new Date());
   const [activeTab, setActiveTab] = useState('pincode');
-  const [selectedState, setSelectedState] = useState({
-    state_id: 0,
-    state_name: 'Select State',
-  });
-  const [selectedDistrict, setSelectedDistrict] = useState({
-    district_id: 0,
-    district_name: 'Select District',
-  });
+  const [selectedState, setSelectedState] = useState(defaultSelectedState);
+  const [selectedDistrict, setSelectedDistrict] = useState(
+    defaultSelectedDistrict,
+  );
   const [activeFilters, setActiveFilters] = useState([]);
   const [filteredCenterList, setFilteredCenterList] = useState([]);
   const onChangePickerValue = (event, selectedDate) => {
@@ -140,14 +145,9 @@ const Vaccination = ({
                         options: states.stateList.map(
                           state => state.state_name,
                         ),
-                        cancelButtonIndex: states.stateList.length - 1,
                         title: 'Select State',
                       },
                       buttonIndex => {
-                        //If cancel button or user pressed the state which is already selected, return
-                        if (buttonIndex === states.stateList.length - 1) {
-                          return;
-                        }
                         let state = states.stateList[buttonIndex];
                         setSelectedState(state);
                         getVaccinationDistricts(state.state_id);
@@ -169,14 +169,9 @@ const Vaccination = ({
                         options: districts.districtList.map(
                           district => district.district_name,
                         ),
-                        cancelButtonIndex: districts.districtList.length - 1,
                         title: 'Select District',
                       },
                       buttonIndex => {
-                        //If cancel button or user pressed the state which is already selected, return
-                        if (buttonIndex === districts.districtList.length - 1) {
-                          return;
-                        }
                         let district = districts.districtList[buttonIndex];
                         setSelectedDistrict(district);
                       },
@@ -204,6 +199,8 @@ const Vaccination = ({
               full
               onPress={() => {
                 if (activeTab === 'pincode') {
+                  setSelectedState(defaultSelectedState);
+                  setSelectedDistrict(defaultSelectedDistrict);
                   if (!pincode || pincode.length !== 6) {
                     showToast('Please enter a valid pincode');
                     return;
@@ -216,6 +213,14 @@ const Vaccination = ({
                   );
                 }
                 if (activeTab === 'district') {
+                  setPincode();
+                  if (
+                    selectedState.state_id === 0 ||
+                    selectedDistrict.district_id === 0
+                  ) {
+                    showToast('Please select state and district');
+                    return;
+                  }
                   getVaccinationCentersByDistrict(
                     selectedDistrict.district_id,
                     `${date.getDate()}-${
