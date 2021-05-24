@@ -42,7 +42,7 @@ const TabNavigator = ({navigation}) => {
             ),
         }}
         name="Home"
-        component={Vaccination}
+        component={Home}
       />
       <Tab.Screen
         options={{

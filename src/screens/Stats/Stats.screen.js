@@ -149,16 +149,8 @@ const Stats = ({navigation, states, cowinReport, covid19IndiaReport}) => {
                   legendFontFamily: 'Poppins-Regular',
                 },
                 {
-                  name: ', 18-30',
-                  population: cowinReport.report.vaccinationByAge.vac_18_30,
-                  color: '#b6c9f0',
-                  legendFontColor: theme.colors.text.secondary,
-                  legendFontSize: wp('3%'),
-                  legendFontFamily: 'Poppins-Regular',
-                },
-                {
                   name: ', 30-45',
-                  population: cowinReport.report.vaccinationByAge.vac_30_45,
+                  population: cowinReport.report.vaccinationByAge.vac_18_45,
                   color: '#233e8b',
                   legendFontColor: theme.colors.text.secondary,
                   legendFontSize: wp('3%'),

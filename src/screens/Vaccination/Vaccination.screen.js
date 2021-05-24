@@ -25,6 +25,7 @@ import {VaccinationCenterPincodeCard} from './components/VaccinationCenterPincod
 import {VaccinationCenterDistrictCard} from './components/VaccinationCenterDistrictCard/VaccinationCenterDistrictCard.component';
 import {UnderlinedInput} from '../../components/common/Input/Input.component';
 import {Filter} from './components/Filter/Filter.component';
+import {Fallback} from '../../components/common/Fallback/Fallback.component';
 import {
   Container,
   HeaderWrapper,
@@ -115,21 +116,14 @@ const Vaccination = ({
                   <Text>Search by Pincode</Text>
                 </TabHeading>
               }>
-              <Item>
-                <NativeBaseIcon
-                  name="location-outline"
-                  type="Ionicons"
-                  color={theme.colors.text.secondary}
-                  onPress={() => setShowPicker(prevState => !prevState)}
-                />
-                <UnderlinedInput
-                  placeholder="Enter your pincode"
-                  keyboardType="numeric"
-                  minLength={6}
-                  maxLength={6}
-                  onChangeText={value => setPincode(value)}
-                />
-              </Item>
+              <UnderlinedInput
+                style={{backgroundColor: theme.colors.bg.primary}}
+                placeholder="Enter your pincode"
+                keyboardType="numeric"
+                minLength={6}
+                maxLength={6}
+                onChangeText={value => setPincode(value)}
+              />
             </CustomTab>
 
             <CustomTab
@@ -233,6 +227,12 @@ const Vaccination = ({
             />
           </ButtonContainer>
         </HeaderWrapper>
+
+        {/* Render fallback UI */}
+        {!vaccinationCenters.loading &&
+          vaccinationCenters.centerList.length === 0 && (
+            <Fallback message="No Centers" />
+          )}
 
         {/* Vaccination cards by pincode search */}
         {vaccinationCenters.searchBy.includes('pincode') &&
