@@ -116,6 +116,12 @@ const Vaccination = ({
                 </TabHeading>
               }>
               <Item>
+                <NativeBaseIcon
+                  name="location-outline"
+                  type="Ionicons"
+                  color={theme.colors.text.secondary}
+                  onPress={() => setShowPicker(prevState => !prevState)}
+                />
                 <UnderlinedInput
                   placeholder="Enter your pincode"
                   keyboardType="numeric"
@@ -151,6 +157,10 @@ const Vaccination = ({
                         let state = states.stateList[buttonIndex];
                         setSelectedState(state);
                         getVaccinationDistricts(state.state_id);
+                        setSelectedDistrict({
+                          district_id: 0,
+                          district_name: 'Select District',
+                        });
                       },
                     )
                   }>
@@ -231,10 +241,10 @@ const Vaccination = ({
         ) : (
           vaccinationCenters.searchBy.includes('pincode') &&
           vaccinationCenters.centerList.length > 0 &&
-          filteredCenterList.map(vaccinationCenter => {
+          filteredCenterList.map((vaccinationCenter, index) => {
             return (
               <VaccinationCenterPincodeCard
-                key={vaccinationCenter.center_id}
+                key={vaccinationCenter.center_id + '-' + index}
                 vacinationCenter={vaccinationCenter}
               />
             );
@@ -266,10 +276,10 @@ const Vaccination = ({
                 })}
               </ScrollView>
 
-              {filteredCenterList.map(vaccinationCenter => {
+              {filteredCenterList.map((vaccinationCenter, index) => {
                 return (
                   <VaccinationCenterDistrictCard
-                    key={vaccinationCenter.center_id}
+                    key={vaccinationCenter.center_id + '-' + index}
                     vaccinationCenter={vaccinationCenter}
                   />
                 );
