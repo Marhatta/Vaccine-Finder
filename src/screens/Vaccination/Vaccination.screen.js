@@ -72,7 +72,7 @@ const Vaccination = ({
   };
 
   const theme = useTheme();
-  const [pincode, setPincode] = useState();
+  const [pincode, setPincode] = useState('');
   const [showPicker, setShowPicker] = useState(false);
   const [date, setDate] = useState(new Date());
   const [activeTab, setActiveTab] = useState('pincode');
@@ -90,7 +90,10 @@ const Vaccination = ({
 
   //apply the filters as soon as filters array changes
   useEffect(() => {
-    if (vaccinationCenters.loadingSuccess) {
+    if (
+      vaccinationCenters.loadingSuccess &&
+      vaccinationCenters.searchBy.includes('district')
+    ) {
       setFilteredCenterList(
         applyDistrictFilters(activeFilters, vaccinationCenters.centerList),
       );
@@ -99,6 +102,7 @@ const Vaccination = ({
     activeFilters,
     vaccinationCenters.loadingSuccess,
     vaccinationCenters.centerList,
+    vaccinationCenters.searchBy,
   ]);
 
   return (
@@ -213,7 +217,7 @@ const Vaccination = ({
                   );
                 }
                 if (activeTab === 'district') {
-                  setPincode();
+                  setPincode('');
                   if (
                     selectedState.state_id === 0 ||
                     selectedDistrict.district_id === 0
@@ -246,7 +250,7 @@ const Vaccination = ({
         ) : (
           vaccinationCenters.searchBy.includes('pincode') &&
           vaccinationCenters.centerList.length > 0 &&
-          filteredCenterList.map((vaccinationCenter, index) => {
+          vaccinationCenters.centerList.map((vaccinationCenter, index) => {
             return (
               <VaccinationCenterPincodeCard
                 key={vaccinationCenter.center_id + '-' + index}
