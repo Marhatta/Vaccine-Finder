@@ -9,6 +9,10 @@ import {
   GET_VACCINATION_DISTRICTS,
   GET_VACCINATION_DISTRICTS_SUCCESS,
   GET_VACCINATION_DISTRICTS_ERROR,
+  NOTIFY_ME,
+  NOTIFY_ME_SUCCESS,
+  NOTIFY_ME_ERROR,
+  CLEAR_RESPONSE_MESSAGE,
 } from './vaccination.types';
 
 const initialState = {
@@ -28,6 +32,11 @@ const initialState = {
   loadingVaccinationDistrictsSuccess: false,
   loadingVaccinationDistrictsError: false,
   vaccinationDistrictsError: null,
+  loadingNotifyMe: false,
+  loadingNotifyMeSuccess: false,
+  loadingNotifyMeError: false,
+  notifyMeResponse: null,
+  notifyMeError: null,
 };
 
 const vaccinationReducer = (state = initialState, action) => {
@@ -101,6 +110,31 @@ const vaccinationReducer = (state = initialState, action) => {
         loadingVaccinationDistricts: false,
         loadingVaccinationDistrictsError: true,
         vaccinationDistrictsError: action.payload,
+      };
+    case NOTIFY_ME:
+      return {
+        ...state,
+        loadingNotifyMe: true,
+      };
+    case NOTIFY_ME_SUCCESS:
+      return {
+        ...state,
+        loadingNotifyMe: false,
+        notifyMeResponse: action.payload,
+        loadingNotifyMeSuccess: true,
+      };
+    case NOTIFY_ME_ERROR:
+      return {
+        ...state,
+        loadingNotifyMe: false,
+        notifyMeError: action.payload,
+        loadingNotifyMeError: true,
+      };
+    case CLEAR_RESPONSE_MESSAGE:
+      return {
+        ...state,
+        notifyMeResponse: null,
+        notifyMeError: null,
       };
     default:
       return state;

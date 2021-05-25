@@ -9,6 +9,10 @@ import {
   GET_VACCINATION_DISTRICTS,
   GET_VACCINATION_DISTRICTS_SUCCESS,
   GET_VACCINATION_DISTRICTS_ERROR,
+  NOTIFY_ME,
+  NOTIFY_ME_SUCCESS,
+  NOTIFY_ME_ERROR,
+  CLEAR_RESPONSE_MESSAGE,
 } from './vaccination.types';
 
 export const getVaccinationCentersByPincode = (pincode, date) => {
@@ -77,5 +81,31 @@ export const getVaccinationDistrictsError = error => {
   return {
     type: GET_VACCINATION_DISTRICTS_ERROR,
     payload: error.message,
+  };
+};
+
+export const notifyMe = centerAndUserInformation => {
+  return {
+    type: NOTIFY_ME,
+    payload: centerAndUserInformation,
+  };
+};
+
+export const notifyMeSuccess = response => {
+  return {
+    type: NOTIFY_ME_SUCCESS,
+    payload: response,
+  };
+};
+
+export const notifyMeError = () => {
+  return {
+    type: NOTIFY_ME_ERROR,
+  };
+};
+
+export const clearResponseMessage = () => {
+  return {
+    type: CLEAR_RESPONSE_MESSAGE,
   };
 };

@@ -1,7 +1,7 @@
 import axios from 'axios';
+import {showToast} from '../../components/utils/toast';
 
 export const getData = (url, headers) => {
-  console.log(url);
   let options = {
     method: 'GET',
     headers: headers
@@ -15,13 +15,34 @@ export const getData = (url, headers) => {
   };
   return axios(options)
     .then(response => {
-      if (url.includes('https://api.twitter.com/2/tweets/search/recent')) {
+      if (url.includes('https://api.twitter.com/')) {
         return response;
       } else {
         return response.data;
       }
     })
     .catch(error => {
-      console.log('=========response error=========', error);
+      showToast('Something went wrong. Please try again');
+    });
+};
+
+export const postData = (url, data, headers, hasFormData) => {
+  let options = {
+    method: 'POST',
+    headers: headers ? headers : {'content-type': 'application/json'},
+    url,
+    data: hasFormData ? data : JSON.stringify(data),
+  };
+  return axios(options)
+    .then(response => {
+      return response.data;
+    })
+    .catch(error => {
+      const {statusCode} = error.response.data;
+      if (statusCode === 400) {
+        return error.response.data;
+      } else {
+        showToast('Something went wrong. Please try again');
+      }
     });
 };

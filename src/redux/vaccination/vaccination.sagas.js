@@ -4,8 +4,9 @@ import {
   GET_VACCINATION_CENTERS_BY_DISTRICT,
   GET_VACCINATION_STATES,
   GET_VACCINATION_DISTRICTS,
+  NOTIFY_ME,
 } from './vaccination.types';
-import {getData} from '../utils/api';
+import {getData, postData} from '../utils/api';
 import {
   getVaccinationCentersSuccess,
   getVaccinationCentersError,
@@ -13,6 +14,8 @@ import {
   getVaccinationStatesError,
   getVaccinationDistrictsSuccess,
   getVaccinationDistrictsError,
+  notifyMeSuccess,
+  notifyMeError,
 } from './vaccination.actions';
 
 //==================GET: Vaccination States ===========================//
@@ -102,6 +105,27 @@ export function* getVaccinationCentersByDistrict() {
 }
 //=====================================================================//
 
+//==================POST: NOTIFY ME ===========================//
+export function* notifyMeAsync({payload}) {
+  try {
+    let notifyResponse = yield postData(
+      'https://covidinfo21.herokuapp.com/notify/center',
+      payload,
+    );
+    if (notifyResponse) {
+      yield put(notifyMeSuccess(notifyResponse));
+    } else {
+    }
+  } catch (error) {
+    yield put(notifyMeError(error));
+  }
+}
+
+export function* notifyMe() {
+  yield takeLatest(NOTIFY_ME, notifyMeAsync);
+}
+//=====================================================================//
+
 //=====================================================================//
 export function* vaccinationSagas() {
   yield all([
@@ -109,5 +133,6 @@ export function* vaccinationSagas() {
     call(getVaccinationCentersByDistrict),
     call(getStates),
     call(getDistricts),
+    call(notifyMe),
   ]);
 }

@@ -35,3 +35,11 @@ export const selectVaccinationCenters = createSelector(
     };
   },
 );
+
+export const selectNotify = createSelector([selectVaccination], vaccination => {
+  return {
+    loading: vaccination.loadingNotifyMe,
+    loadingSuccess: vaccination.loadingNotifyMeSuccess,
+    notifyMeResponse: vaccination.notifyMeResponse,
+  };
+});
