@@ -130,7 +130,6 @@ const Vaccination = ({
                 </TabHeading>
               }>
               <UnderlinedInput
-                style={{backgroundColor: theme.colors.bg.primary}}
                 placeholder="Enter your pincode"
                 keyboardType="numeric"
                 minLength={6}
@@ -200,14 +199,20 @@ const Vaccination = ({
               </Selector>
             </CustomTab>
           </TabsWrapper>
-          <Item>
+          <Item onPress={() => setShowPicker(prevState => !prevState)}>
             <NativeBaseIcon
               name="calendar"
               type="AntDesign"
               color={theme.colors.text.secondary}
-              onPress={() => setShowPicker(prevState => !prevState)}
             />
-            <Input placeholder={date.toDateString()} editable={false} />
+            <Input
+              style={{
+                backgroundColor: theme.colors.bg,
+                borderBottomColor: theme.colors.text.secondary,
+              }}
+              placeholder={date.toDateString()}
+              editable={false}
+            />
           </Item>
 
           {/* Search button */}
