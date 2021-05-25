@@ -7,7 +7,7 @@ import Home from '../../screens/Home/Home.screen';
 import Stats from '../../screens/Stats/Stats.screen';
 import TweetsScreen from '../../screens/Tweets/Tweets.screen';
 import Settings from '../../screens/Settings/Settings.screen';
-import Vaccination from '../../screens/Vaccination/Vaccination.screen';
+import {VaccinationNavigator} from './vaccination.navigator';
 
 const Tab = createBottomTabNavigator();
 
@@ -42,7 +42,7 @@ const TabNavigator = ({navigation}) => {
             ),
         }}
         name="Home"
-        component={Vaccination}
+        component={Home}
       />
       <Tab.Screen
         options={{
@@ -62,7 +62,7 @@ const TabNavigator = ({navigation}) => {
       />
       <Tab.Screen
         name="Vaccination"
-        component={Vaccination}
+        component={VaccinationNavigator}
         options={{
           tabBarIcon: ({focused}) =>
             focused ? (

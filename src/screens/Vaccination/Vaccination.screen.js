@@ -105,6 +105,10 @@ const Vaccination = ({
     vaccinationCenters.searchBy,
   ]);
 
+  const onPressNotifyMe = (center_id, pincode) => {
+    navigation.navigate('Notify', {center_id: center_id, pincode: pincode});
+  };
+
   return (
     <Layout navigation={navigation}>
       <Container showsVerticalScrollIndicator={false}>
@@ -264,7 +268,10 @@ const Vaccination = ({
             return (
               <VaccinationCenterPincodeCard
                 key={vaccinationCenter.center_id + '-' + index}
-                vacinationCenter={vaccinationCenter}
+                vaccinationCenter={vaccinationCenter}
+                onPressNotifyMe={(center_id, pincode) =>
+                  onPressNotifyMe(center_id, pincode)
+                }
               />
             );
           })
@@ -300,6 +307,9 @@ const Vaccination = ({
                   <VaccinationCenterDistrictCard
                     key={vaccinationCenter.center_id + '-' + index}
                     vaccinationCenter={vaccinationCenter}
+                    onPressNotifyMe={(center_id, pincode) =>
+                      onPressNotifyMe(center_id, pincode)
+                    }
                   />
                 );
               })}

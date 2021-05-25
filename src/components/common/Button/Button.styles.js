@@ -32,5 +32,5 @@ export const ButtonText = styled(Text)`
   text-transform: ${({textTransform}) =>
     textTransform ? textTransform : 'uppercase'};
   color: ${props =>
-    props.color ? props.color : props.theme.colors.ui.primary};
+    props.color ? props.color : props.theme.colors.text.primary};
 `;

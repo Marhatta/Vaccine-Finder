@@ -34,6 +34,14 @@ export const Booked = styled.View`
   justify-content: center;
   align-items: center;
 `;
+export const Available = styled.View`
+  background-color: ${props => props.theme.colors.ui.primary};
+  border-radius: 5px;
+  padding-horizontal: ${wp('1%')}px;
+  padding-top: ${hp('.2%')}px;
+  justify-content: center;
+  align-items: center;
+`;
 
 export const NotifyMe = styled.TouchableOpacity`
   background-color: ${props => props.theme.colors.ui.error};
