@@ -10,7 +10,6 @@ import {
 
 //==================GET: Cowin Public Report ===========================//
 export function* getCowinPublicReportAsync({payload: stateId}) {
-  console.log(stateId);
   try {
     let report = yield getData(
       !stateId

@@ -29,7 +29,6 @@ export function* getStatesAsync() {
     } else {
     }
   } catch (error) {
-    console.log(error);
     yield put(getVaccinationStatesError(error));
   }
 }
@@ -49,7 +48,6 @@ export function* getDistrictsAsync({payload: stateId}) {
     } else {
     }
   } catch (error) {
-    console.log(error);
     yield put(getVaccinationDistrictsError(error));
   }
 }
@@ -69,7 +67,6 @@ export function* getVaccinationCentersByPincodeAsync({payload}) {
     } else {
     }
   } catch (error) {
-    console.log(error);
     yield put(getVaccinationCentersError(error));
   }
 }

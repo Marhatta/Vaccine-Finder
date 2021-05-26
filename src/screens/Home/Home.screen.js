@@ -128,7 +128,7 @@ const Home = ({
                 labels: covid19IndiaReport.casesTimeSeries
                   .slice(covid19IndiaReport.casesTimeSeries.length - 7)
                   .map(cases => {
-                    let formattedDate = new Date(cases.date).toDateString();
+                    let formattedDate = new Date(cases.dateymd).toDateString();
                     let splittedDate = formattedDate.split(' ');
                     return `${splittedDate[1]} ${splittedDate[2]}`;
                   }),
