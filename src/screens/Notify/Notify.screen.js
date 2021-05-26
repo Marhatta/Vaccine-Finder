@@ -137,6 +137,11 @@ const Notify = ({
           )
         )}
       </Container>
+      <Text variant="faded">
+        Please note: If you get a notification from us about the slot
+        availablity, please check the Cowin App to book the slots instantly, as
+        the slot availability on Cowin changes rapidly.
+      </Text>
     </Layout>
   );
 };
