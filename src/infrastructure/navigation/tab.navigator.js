@@ -21,6 +21,7 @@ const TabNavigator = ({navigation}) => {
         inactiveTintColor: theme.colors.text.secondary,
         style: {
           backgroundColor: theme.colors.bg.primary,
+          borderTopColor: theme.colors.bg.primary,
         },
         labelStyle: {
           fontFamily: 'Poppins-Medium',
