@@ -1,5 +1,4 @@
 import React from 'react';
-
 import {heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import {Text} from '../../../../components/common/Typography/Text.component';
 import {Spacer} from '../../../../components/common/Spacer/Spacer.component';
@@ -61,6 +60,7 @@ export const VaccinationCenterDistrictCard = ({
             onPressNotifyMe(
               vaccinationCenter.center_id,
               vaccinationCenter.pincode,
+              vaccinationCenter.min_age_limit,
             )
           }>
           <Text variant="faded" color={'white'}>
@@ -71,7 +71,9 @@ export const VaccinationCenterDistrictCard = ({
         <BorderedButton
           title="Book on cowin"
           full
-          onPress={() => Linking.openURL('https://www.cowin.gov.in/home')}
+          onPress={() =>
+            Linking.openURL('https://selfregistration.cowin.gov.in/')
+          }
         />
       )}
     </VaccineCard>

@@ -1,4 +1,4 @@
-package com.covidinfo;
+package com.vishalmarhatta.vaccinefinder;
 
 import android.app.Application;
 import android.content.Context;

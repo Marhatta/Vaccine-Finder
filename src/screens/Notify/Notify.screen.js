@@ -41,7 +41,7 @@ const Notify = ({
     };
   }, []);
 
-  const {center_id, pincode} = route.params;
+  const {center_id, pincode, age} = route.params;
 
   const validateEmail = emailAddress => {
     const re =
@@ -106,6 +106,7 @@ const Notify = ({
               email,
               center_id,
               pincode,
+              age,
             })
           }
           disabled={notifyState.loading}

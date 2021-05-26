@@ -29,7 +29,9 @@ export const getData = (url, headers) => {
 export const postData = (url, data, headers, hasFormData) => {
   let options = {
     method: 'POST',
-    headers: headers ? headers : {'content-type': 'application/json'},
+    headers: headers
+      ? {'content-type': 'application/json', ...headers}
+      : {'content-type': 'application/json'},
     url,
     data: hasFormData ? data : JSON.stringify(data),
   };

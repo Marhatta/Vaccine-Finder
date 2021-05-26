@@ -7,6 +7,7 @@ import {
   NOTIFY_ME,
 } from './vaccination.types';
 import {getData, postData} from '../utils/api';
+import {CUSTOM_BEARER_TOKEN} from '../../env.json';
 import {
   getVaccinationCentersSuccess,
   getVaccinationCentersError,
@@ -104,10 +105,14 @@ export function* getVaccinationCentersByDistrict() {
 
 //==================POST: NOTIFY ME ===========================//
 export function* notifyMeAsync({payload}) {
+  console.log(payload);
   try {
     let notifyResponse = yield postData(
       'https://covidinfo21.herokuapp.com/notify/center',
       payload,
+      {
+        Authorization: `Bearer ${CUSTOM_BEARER_TOKEN}`,
+      },
     );
     if (notifyResponse) {
       yield put(notifyMeSuccess(notifyResponse));

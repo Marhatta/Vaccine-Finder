@@ -88,6 +88,7 @@ export const VaccinationCenterPincodeCard = ({
             onPressNotifyMe(
               vaccinationCenter.center_id,
               vaccinationCenter.pincode,
+              activeSession.min_age_limit,
             )
           }>
           <Text variant="faded" color={'white'}>
@@ -98,7 +99,9 @@ export const VaccinationCenterPincodeCard = ({
         <BorderedButton
           title="Book on cowin"
           full
-          onPress={() => Linking.openURL('https://www.cowin.gov.in/home')}
+          onPress={() =>
+            Linking.openURL('https://selfregistration.cowin.gov.in/')
+          }
         />
       )}
     </VaccineCard>
