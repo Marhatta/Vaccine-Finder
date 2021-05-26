@@ -149,7 +149,7 @@ const Stats = ({navigation, states, cowinReport, covid19IndiaReport}) => {
                   legendFontFamily: 'Poppins-Regular',
                 },
                 {
-                  name: ', 30-45',
+                  name: ', 18-45',
                   population: cowinReport.report.vaccinationByAge.vac_18_45,
                   color: '#233e8b',
                   legendFontColor: theme.colors.text.secondary,
