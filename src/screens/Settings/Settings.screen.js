@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {Switch} from 'react-native';
+import {Switch, Linking, TouchableOpacity} from 'react-native';
 import {connect} from 'react-redux';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {useTheme} from 'styled-components/native';
@@ -45,6 +45,9 @@ const Settings = ({setTheme, currentTheme}) => {
           value={isEnabled}
         />
       </ToggleTheme>
+      <TouchableOpacity onPress={() => Linking.openURL('https://icons8.com')}>
+        <Text>App Icon by Icons8</Text>
+      </TouchableOpacity>
     </Layout>
   );
 };
