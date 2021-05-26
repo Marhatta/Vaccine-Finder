@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import {connect} from 'react-redux';
 import {createStructuredSelector} from 'reselect';
 import {heightPercentageToDP as hp} from 'react-native-responsive-screen';
@@ -25,28 +25,12 @@ import {
 } from './Home.styles';
 import {formatNumber} from '../../utils/numberFormatter';
 import {
-  getCowinPublicReport,
-  getCovid19IndiaReport,
-} from '../../redux/stats/stats.actions';
-import {
   selectCovid19IndiaReport,
   selectCowinReport,
   selectStates,
 } from '../../redux/stats/stats.selectors';
 
-const Home = ({
-  navigation,
-  cowinReport,
-  covid19IndiaReport,
-  getCowinPublicReport,
-  getCovid19IndiaReport,
-  states,
-}) => {
-  useEffect(() => {
-    getCowinPublicReport();
-    getCovid19IndiaReport();
-  }, []);
-
+const Home = ({navigation, cowinReport, covid19IndiaReport, states}) => {
   const theme = useTheme();
 
   return (
@@ -353,7 +337,4 @@ const mapStateToProps = createStructuredSelector({
   states: selectStates,
 });
 
-export default connect(mapStateToProps, {
-  getCowinPublicReport,
-  getCovid19IndiaReport,
-})(Home);
+export default connect(mapStateToProps, null)(Home);

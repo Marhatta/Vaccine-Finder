@@ -1,5 +1,6 @@
 import 'react-native-gesture-handler';
 import React, {useEffect} from 'react';
+import SplashScreen from 'react-native-splash-screen';
 import {Platform, UIManager} from 'react-native';
 import {connect} from 'react-redux';
 import {Root} from 'native-base';
@@ -13,6 +14,10 @@ import {lightTheme} from './src/infrastructure/theme/light';
 import {darkTheme} from './src/infrastructure/theme/dark';
 import {showToast} from './src/components/utils/toast';
 import {setTheme} from './src/redux/app/app.actions';
+import {
+  getCovid19IndiaReport,
+  getCowinPublicReport,
+} from './src/redux/stats/stats.actions';
 
 //Enable layout animations for android
 //It works by default for iOS
@@ -34,7 +39,12 @@ const getTheme = themeName => {
   }
 };
 
-function App({themeName, setTheme}) {
+function App({
+  themeName,
+  setTheme,
+  getCovid19IndiaReport,
+  getCowinPublicReport,
+}) {
   useEffect(() => {
     async function loadTheme() {
       try {
@@ -47,6 +57,9 @@ function App({themeName, setTheme}) {
       }
     }
     loadTheme();
+    getCowinPublicReport();
+    getCovid19IndiaReport();
+    SplashScreen.hide();
   }, []);
   return (
     <ThemeProvider theme={getTheme(themeName)}>
@@ -62,4 +75,8 @@ const mapStateToProps = createStructuredSelector({
   themeName: selectTheme,
 });
 
-export default connect(mapStateToProps, {setTheme})(App);
+export default connect(mapStateToProps, {
+  setTheme,
+  getCowinPublicReport,
+  getCovid19IndiaReport,
+})(App);

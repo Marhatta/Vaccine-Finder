@@ -15,12 +15,12 @@ const TabNavigator = ({navigation}) => {
   const theme = useTheme();
   return (
     <Tab.Navigator
+      initialRouteName="Home"
       tabBarOptions={{
         activeTintColor: theme.colors.ui.tertiary,
         inactiveTintColor: theme.colors.text.secondary,
         style: {
           backgroundColor: theme.colors.bg.primary,
-          borderTopWidth: 0,
         },
         labelStyle: {
           fontFamily: 'Poppins-Medium',
