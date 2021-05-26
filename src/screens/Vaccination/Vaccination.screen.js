@@ -138,6 +138,7 @@ const Vaccination = ({
                 keyboardType="numeric"
                 minLength={6}
                 maxLength={6}
+                value={pincode}
                 onChangeText={value => setPincode(value)}
               />
             </CustomTab>
