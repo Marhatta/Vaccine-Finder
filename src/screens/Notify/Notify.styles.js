@@ -32,3 +32,15 @@ export const ResponseMessageContainer = styled.View`
 export const ResponseMessage = styled(Text)`
   margin-top: ${hp('1%')}px;
 `;
+
+export const DoseContainer = styled.View`
+  flex-direction: row;
+  margin-vertical: ${hp('.5%')}px;
+  align-items: center;
+`;
+
+export const Dose = styled.View`
+  flex-direction: row;
+  align-items: center;
+  margin-left: ${wp('2%')}px;
+`;

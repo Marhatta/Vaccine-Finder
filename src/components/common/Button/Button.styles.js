@@ -34,3 +34,9 @@ export const ButtonText = styled(Text)`
   color: ${props =>
     props.color ? props.color : props.theme.colors.text.primary};
 `;
+
+export const LinkButtonContainer = styled.TouchableOpacity`
+  justify-content: center;
+  align-items: center;
+  padding: ${props => props.theme.space[2]};
+`;

@@ -2,7 +2,10 @@ import React from 'react';
 import {heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import {Text} from '../../../../components/common/Typography/Text.component';
 import {Spacer} from '../../../../components/common/Spacer/Spacer.component';
-import {BorderedButton} from '../../../../components/common/Button/Button.component';
+import {
+  BorderedButton,
+  LinkButton,
+} from '../../../../components/common/Button/Button.component';
 import {
   VaccineCard,
   CapacityContainer,
@@ -11,13 +14,18 @@ import {
   Available,
 } from './VaccinationCenterDistrictCard.styles';
 import {Linking} from 'react-native';
+import {useTheme} from 'styled-components/native';
 
 export const VaccinationCenterDistrictCard = ({
   vaccinationCenter,
   onPressNotifyMe,
 }) => {
+  const theme = useTheme();
   const isBooked =
     vaccinationCenter.available_capacity_dose1 === 0 &&
+    vaccinationCenter.available_capacity_dose2 === 0;
+  const isPartiallyBooked =
+    vaccinationCenter.available_capacity_dose1 === 0 ||
     vaccinationCenter.available_capacity_dose2 === 0;
   return (
     <VaccineCard>
@@ -61,6 +69,7 @@ export const VaccinationCenterDistrictCard = ({
               vaccinationCenter.center_id,
               vaccinationCenter.pincode,
               vaccinationCenter.min_age_limit,
+              '00',
             )
           }>
           <Text variant="faded" color={'white'}>
@@ -68,13 +77,31 @@ export const VaccinationCenterDistrictCard = ({
           </Text>
         </NotifyMe>
       ) : (
-        <BorderedButton
-          title="Book on cowin"
-          full
-          onPress={() =>
-            Linking.openURL('https://selfregistration.cowin.gov.in/')
-          }
-        />
+        <>
+          <BorderedButton
+            title="Book on cowin"
+            full
+            onPress={() =>
+              Linking.openURL('https://selfregistration.cowin.gov.in/')
+            }
+          />
+          {isPartiallyBooked && (
+            <LinkButton
+              title={`Notify me for dose ${
+                vaccinationCenter.available_capacity_dose1 === 0 ? '1' : '2'
+              }`}
+              color={theme.colors.ui.error}
+              onPress={() =>
+                onPressNotifyMe(
+                  vaccinationCenter.center_id,
+                  vaccinationCenter.pincode,
+                  vaccinationCenter.min_age_limit,
+                  vaccinationCenter.available_capacity_dose1 === 0 ? '1' : '2',
+                )
+              }
+            />
+          )}
+        </>
       )}
     </VaccineCard>
   );

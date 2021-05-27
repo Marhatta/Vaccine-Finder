@@ -3,7 +3,10 @@ import {ScrollView, View, LayoutAnimation, Linking} from 'react-native';
 import {heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import {Text} from '../../../../components/common/Typography/Text.component';
 import {Spacer} from '../../../../components/common/Spacer/Spacer.component';
-import {BorderedButton} from '../../../../components/common/Button/Button.component';
+import {
+  BorderedButton,
+  LinkButton,
+} from '../../../../components/common/Button/Button.component';
 import {useTheme} from 'styled-components/native';
 import {
   VaccineCard,
@@ -24,6 +27,9 @@ export const VaccinationCenterPincodeCard = ({
   );
   const isBooked =
     activeSession.available_capacity_dose1 === 0 &&
+    activeSession.available_capacity_dose2 === 0;
+  const isPartiallyBooked =
+    activeSession.available_capacity_dose1 === 0 ||
     activeSession.available_capacity_dose2 === 0;
   return (
     <VaccineCard>
@@ -89,6 +95,7 @@ export const VaccinationCenterPincodeCard = ({
               vaccinationCenter.center_id,
               vaccinationCenter.pincode,
               activeSession.min_age_limit,
+              '00',
             )
           }>
           <Text variant="faded" color={'white'}>
@@ -96,13 +103,31 @@ export const VaccinationCenterPincodeCard = ({
           </Text>
         </NotifyMe>
       ) : (
-        <BorderedButton
-          title="Book on cowin"
-          full
-          onPress={() =>
-            Linking.openURL('https://selfregistration.cowin.gov.in/')
-          }
-        />
+        <>
+          <BorderedButton
+            title="Book on cowin"
+            full
+            onPress={() =>
+              Linking.openURL('https://selfregistration.cowin.gov.in/')
+            }
+          />
+          {isPartiallyBooked && (
+            <LinkButton
+              title={`Notify me for dose ${
+                activeSession.available_capacity_dose1 === 0 ? '1' : '2'
+              }`}
+              color={theme.colors.ui.error}
+              onPress={() =>
+                onPressNotifyMe(
+                  vaccinationCenter.center_id,
+                  vaccinationCenter.pincode,
+                  activeSession.min_age_limit,
+                  activeSession.available_capacity_dose1 === 0 ? '1' : '2',
+                )
+              }
+            />
+          )}
+        </>
       )}
     </VaccineCard>
   );
