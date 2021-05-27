@@ -15,7 +15,6 @@
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		175E9F759BA44814AF2B9FDE /* Ionicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A82BB1321D7046E397EFB93C /* Ionicons.ttf */; };
-		1C2F07B930794636B1D50DB4 /* floating.png in Resources */ = {isa = PBXBuildFile; fileRef = 0E680B4E1775419D9FE70C8E /* floating.png */; };
 		2099BB19731E46109EB2E25E /* Entypo.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 641A4BFBED42452794A162BA /* Entypo.ttf */; };
 		35F6342C2B6B4EA080BFE184 /* EvilIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 354642D9D73449AEA230B075 /* EvilIcons.ttf */; };
 		3CB2E5BE7161402B90058805 /* Octicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7D9CBCE279F348CEA87BCE72 /* Octicons.ttf */; };
@@ -54,7 +53,6 @@
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00E356F21AD99517003FC87E /* VaccineFinderTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VaccineFinderTests.m; sourceTree = "<group>"; };
 		068A9F07645244EB87B68442 /* FontAwesome5_Brands.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Brands.ttf; path = "../node_modules/native-base/Fonts/FontAwesome5_Brands.ttf"; sourceTree = "<group>"; };
-		0E680B4E1775419D9FE70C8E /* floating.png */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = floating.png; path = ../src/assets/icons/floating.png; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* VaccineFinder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VaccineFinder.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = VaccineFinder/AppDelegate.h; sourceTree = "<group>"; };
 		13B07FB01A68108700A75B9A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = VaccineFinder/AppDelegate.m; sourceTree = "<group>"; };
@@ -188,7 +186,6 @@
 				47DB0FC349BC4DCB840ACC74 /* rubicon-icon-font.ttf */,
 				45BDBBA909AB4A6C866C0B5E /* SimpleLineIcons.ttf */,
 				CC917E1725764F22AE06112F /* Zocial.ttf */,
-				0E680B4E1775419D9FE70C8E /* floating.png */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -343,7 +340,6 @@
 				9375826DE5104CBBAB317577 /* rubicon-icon-font.ttf in Resources */,
 				1238D6DE85FB4755B5DBE5BB /* SimpleLineIcons.ttf in Resources */,
 				4BDBB12532B647CDAF278561 /* Zocial.ttf in Resources */,
-				1C2F07B930794636B1D50DB4 /* floating.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
