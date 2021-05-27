@@ -1,11 +1,13 @@
 import styled from 'styled-components/native';
 import {Button} from 'native-base';
 import {Text} from '../Typography/Text.component';
+import {heightPercentageToDP as hp} from 'react-native-responsive-screen';
 
 export const CustomButton = styled(Button)`
   background-color: ${props =>
     props.color ? props.color : props.theme.colors.ui.primary};
   border-radius: 6px;
+  height: ${hp('6%')}px;
 `;
 
 export const CustomBorderedButton = styled(Button)`
@@ -13,6 +15,7 @@ export const CustomBorderedButton = styled(Button)`
   border-color: ${props =>
     props.color ? props.color : props.theme.colors.ui.primary};
   border-radius: 6px;
+  height: ${hp('6%')}px;
 `;
 
 export const CustomIconButton = styled(Button)`
@@ -22,6 +25,7 @@ export const CustomIconButton = styled(Button)`
   border-radius: 6px;
   padding: ${props => props.theme.space[2]};
   justify-content: space-between;
+  height: ${hp('6%')}px;
 `;
 
 export const Row = styled.View`

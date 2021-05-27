@@ -23,6 +23,7 @@ export const CustomTab = styled(Tab)`
   flex-direction: row;
   align-items: center;
   justify-content: center;
+  background-color: ${props => props.theme.colors.bg.primary};
 `;
 
 export const ActionSheetText = styled(Text)`
@@ -32,8 +33,10 @@ export const ActionSheetText = styled(Text)`
   border-bottom-width: .5px;
   border-bottom-color: ${props =>
     props.color ? props.color : props.theme.colors.text.secondary};
+    
     opacity:.6;
   width: ${wp('43%')}px;
+  
 `;
 
 export const ButtonContainer = styled.View`
@@ -42,4 +45,6 @@ export const ButtonContainer = styled.View`
 
 export const Selector = styled.TouchableOpacity`
   background-color: ${props => props.theme.colors.bg.primary};
+  border-width: 1px;
+  border-color: ${props => props.theme.colors.bg.primary};
 `;

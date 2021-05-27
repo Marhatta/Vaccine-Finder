@@ -9,7 +9,6 @@ import {
 } from './Button.styles';
 import {Icon} from '../Icon/Icon.component';
 import {Spacer} from '../Spacer/Spacer.component';
-import {TouchableOpacity} from 'react-native';
 
 // These buttons can take all the props of a native-base button
 export const Button = ({title, textTransform, color, ...props}) => {

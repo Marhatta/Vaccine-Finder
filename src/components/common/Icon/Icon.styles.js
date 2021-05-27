@@ -14,5 +14,5 @@ export const CustomTouchable = styled.TouchableOpacity`
 export const CustomNativeBaseIcon = styled(Icon)`
   color: ${props =>
     props.color ? props.color : props.theme.colors.ui.tertiary};
-  font-size: ${props => (props.fontSize ? props.fontSize : 20)}px;
+  font-size: ${props => (props.fontSize ? props.fontSize : hp('2.8%'))}px;
 `;

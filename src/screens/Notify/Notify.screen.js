@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {TouchableOpacity, View} from 'react-native';
+import {TouchableOpacity} from 'react-native';
 import {connect} from 'react-redux';
 import {createStructuredSelector} from 'reselect';
 import {Item, Input, Body, Spinner, Radio} from 'native-base';
