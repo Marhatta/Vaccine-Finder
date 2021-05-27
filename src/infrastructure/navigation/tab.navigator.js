@@ -22,7 +22,7 @@ const TabNavigator = ({navigation}) => {
         style: {
           backgroundColor: theme.colors.bg.primary,
           borderTopColor: theme.colors.bg.primary,
-          height: hp('5.5%'),
+          height: hp('7%'),
         },
         labelStyle: {
           fontFamily: 'Poppins-Medium',
