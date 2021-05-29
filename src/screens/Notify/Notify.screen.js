@@ -33,7 +33,6 @@ const Notify = ({
   notifyState,
   clearResponseMessage,
 }) => {
-  console.log(route.params);
   const [consentGiven, setConsentGiven] = useState(false);
   const [email, setEmail] = useState('');
   const [selectedDose, setselectedDose] = useState(null);
