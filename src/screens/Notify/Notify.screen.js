@@ -33,16 +33,17 @@ const Notify = ({
   notifyState,
   clearResponseMessage,
 }) => {
+  console.log(route.params);
   const [consentGiven, setConsentGiven] = useState(false);
   const [email, setEmail] = useState('');
   const [selectedDose, setselectedDose] = useState(null);
   const theme = useTheme();
 
   useEffect(() => {
-    if (dose === '0') {
-      setselectedDose(0);
-    } else if (dose === '1') {
+    if (dose === '1') {
       setselectedDose(1);
+    } else if (dose === '2') {
+      setselectedDose(2);
     }
     // returned function will be called on component unmount
     return () => {
