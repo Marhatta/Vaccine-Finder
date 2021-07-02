@@ -138,8 +138,8 @@ android {
         applicationId "com.vishalmarhatta.vaccinefinder"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 6
-        versionName "1.6"
+        versionCode 7
+        versionName "1.6.1"
     }
     splits {
         abi {
