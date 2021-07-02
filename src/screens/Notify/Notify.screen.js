@@ -1,5 +1,9 @@
 import React, {useState, useEffect} from 'react';
-import {TouchableOpacity} from 'react-native';
+import {
+  Keyboard,
+  TouchableOpacity,
+  TouchableWithoutFeedback,
+} from 'react-native';
 import {connect} from 'react-redux';
 import {createStructuredSelector} from 'reselect';
 import {Item, Input, Body, Spinner, Radio} from 'native-base';
@@ -75,6 +79,7 @@ const Notify = ({
       showToast('Please select a dose');
       return;
     }
+    Keyboard.dismiss();
     //If email is valid, consent is given and the dose is selected
     notifyMe(data);
   };
@@ -139,21 +144,22 @@ const Notify = ({
             </Text>
           </Body>
         </ConsentContainer>
-        <Button
-          title="Notify Me"
-          full
-          onPress={() =>
-            notify({
-              email,
-              center_id,
-              pincode,
-              age,
-              dose: selectedDose,
-            })
-          }
-          disabled={notifyState.loading}
-        />
-
+        <TouchableWithoutFeedback>
+          <Button
+            title="Notify Me"
+            full
+            onPress={() =>
+              notify({
+                email,
+                center_id,
+                pincode,
+                age,
+                dose: selectedDose,
+              })
+            }
+            disabled={notifyState.loading}
+          />
+        </TouchableWithoutFeedback>
         {notifyState.loading ? (
           <Spinner />
         ) : (

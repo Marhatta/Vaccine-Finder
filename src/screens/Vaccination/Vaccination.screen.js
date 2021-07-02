@@ -43,8 +43,9 @@ const AVAILABLE_FILTERS = [
   {id: 3, filterBy: 'vaccineName', filterName: 'Sputnik-V'},
   {id: 4, filterBy: 'age', filterName: '45+'},
   {id: 5, filterBy: 'age', filterName: '18+'},
-  {id: 6, filterBy: 'price', filterName: 'Paid'},
-  {id: 7, filterBy: 'price', filterName: 'Free'},
+  {id: 6, filterBy: 'age', filterName: '30+'},
+  {id: 7, filterBy: 'price', filterName: 'Paid'},
+  {id: 8, filterBy: 'price', filterName: 'Free'},
 ];
 
 const Vaccination = ({
